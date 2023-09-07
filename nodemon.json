@@ -1,0 +1,21 @@
+{
+    "restartable": "rs",
+    "ignore": [
+        ".git",
+        "node_modules/**/node_modules",
+        "database/storage",
+        "public/",
+        "logs/"
+    ],
+    "verbose": true,
+    "execMap": {
+        "js": "node"
+    },
+    "watch": [
+        "."
+    ],
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "ext": "js,json,html,cjs,njk"
+}

@@ -1,0 +1,27 @@
+<div class=" my-2 sm:text-sm md:text-3xl" style="text-align: center;">Наши поставщики</div>
+<hr class="w-1/2 mx-auto h-1 bg-[#1d3a6d]">
+<div class="flex overflow-x-hidden whitespace-nowrap h-24 my-8" id="flavoursContainer">
+    {% for i in range(1, 12) %}
+        <img class="p-4" src="/img/suppliers/{{ i }}.png">
+    {% endfor %}
+</div>
+<script>
+    const flavoursContainer = document.getElementById('flavoursContainer');
+    const flavoursScrollWidth = flavoursContainer.scrollWidth;
+    window.addEventListener('load', () => {
+        self.setInterval(() => {
+            const first = document.querySelector('#flavoursContainer img');
+            if (!isElementInViewport(first)) {
+                flavoursContainer.appendChild(first);
+                flavoursContainer.scrollTo(flavoursContainer.scrollLeft - first.offsetWidth, 0);
+            }
+            if (flavoursContainer.scrollLeft !== flavoursScrollWidth) {
+                flavoursContainer.scrollTo(flavoursContainer.scrollLeft + 1, 0);
+            }
+        }, 15);
+    });
+    function isElementInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return rect.right > 0;
+    }
+</script>

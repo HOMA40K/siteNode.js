@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: LaoMuangDon;
+    src: url(LaoMuangDon-Regular.ttf);
+
+}
+
+.myTextColor {
+    color: #1d3a6d
+}
+
+body {
+    color: #1d3a6d;
+}
+
+.card0 {
+    position: relative;
+    align-items: center;
+    background-color: #1d3a6d;
+    padding: 10px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.card1 {
+  position: relative;
+  right: 0;
+  align-items: center;
+  background-color: #1d3a6d;
+  padding: 10px;
+  border-radius: 20px 0px 0px 20px;
+}
+.text-xxs{
+    font-size: 0.5rem/* 12px */;
+    line-height: 0.75rem/* 16px */;
+
+}
+
+.myShadow{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}

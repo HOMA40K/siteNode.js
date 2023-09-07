@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+
+<div class="relative"></div>
+
+<!-- card -->
+<div class="lg:flex gap-6">
+    <div class="lg:flex-1">
+        <div class="card lg:w-96 w-10/12 shadow-xl m-6 bg-[#1d3a6d]">
+            <div class="card-body text-[#fff]">
+                <h2 class="card-title">Офис</h2>
+                <p>Пн-Пт 9:00-18:00</p>
+                <p>{{ info.phone }}</p>
+                <p>{{ info.mail }}</p>
+                <p>Адрес 111024, ГОРОД МОСКВА, УЛИЦА АВИАМОТОРНАЯ, ДОМ 65, СТРОЕНИЕ 1, ЭТ 2 ПОМ II КОМ 21
+                </p>
+            </div>
+        </div>
+        <div class="card lg:w-96 w-10/12 bg-base-100 shadow-xl m-6">
+            <div class="card-body text-[#1d3a6d]">
+                <h2 class="card-title">Реквизиты</h2>
+                <p>Адрес 111024, ГОРОД МОСКВА, УЛИЦА АВИАМОТОРНАЯ, ДОМ 65, СТРОЕНИЕ 1, ЭТ 2 ПОМ II КОМ 21
+                </p>
+                <p>ИНН 7722464540</p>
+                <p>КПП 772201001</p>
+                <p>ОГРН 1187746699447</p>
+            </div>
+        </div>
+    </div>
+    <div class="lg:flex-1">
+    <div class="relative  h-44 w-10/12 lg:h-full lg:w-full mx-auto">
+        <iframe class="absolute top-0 left-0 w-full h-full"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d561.989272872013!2d37.6901788!3d55.7071176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab4da44bbcc1d%3A0xd0c43653bfa1771c!2z0K7QttC90L7Qv9C-0YDRgtC-0LLQsNGPINGD0LsuLCA3INGB0YLRgNC-0LXQvdC40LUgNywgNDAzLCDQnNC-0YHQutCy0LAsINCg0L7RgdGB0LjRjywgMTE1MDg4!5e0!3m2!1sru!2see!4v1692191332377!5m2!1sru!2see"
+            frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+        </iframe>
+    </div>
+    </div>
+</div>
+{% include "./parts/feedback.html"%}
+<br>
+
+
+
+{%endblock%}

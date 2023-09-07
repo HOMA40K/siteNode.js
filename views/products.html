@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">Pick the best fantasy franchise</span>
+    <span class="label-text-alt">Alt label</span>
+  </label>
+  <div class="w-screen h-20 relative mb-96">
+    <div class="card xl:card-side shadow-xl scale-90 text-white bg-[#1d3a6d] h-fit">
+        <figure class="w-96"><img class="h-full w-full aspect-square" src="/img/box2.png" alt="Album" /></figure>
+        <div class="card-body w-4/6">
+            <h2 class="card-title text-4xl">EXD оболочки</h2>
+            <p  class="text-2xl">Шкаф взрывозащищенный - это специальное устройство, которое предназначено для защиты
+                оборудования и электронных компонентов от воздействия окружающей среды и опасных условий.
+                Такие шкафы изготавливаются из специальных материалов, которые обеспечивают защиту от пыли,
+                влаги и высоких температур.
+            </p>
+            <div class="card-actions justify-end">
+                <button class="btn btn-primary bg-white text-[#1d3a6d]">Listen</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <select class="select select-bordered">
+    <option disabled selected>Pick one</option>
+    <option>Star Wars</option>
+    <option>Harry Potter</option>
+    <option>Lord of the Rings</option>
+    <option>Planet of the Apes</option>
+    <option>Star Trek</option>
+  </select>
+  <label class="label">
+    <span class="label-text-alt">Alt label</span>
+    <span class="label-text-alt">Alt label</span>
+  </label>
+</div>
+
+{%endblock%}

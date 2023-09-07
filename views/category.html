@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "parts/small_header.html" as header %}
+{% block content %}
+
+    {{ header.header(products[0].type) }}
+    {% include "parts/our_products.html" %}
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 p-10"> 
+        {% for product in products %}
+            <div class="text-white bg-[#1d3a6d] flex h-96 rounded-xl">
+                <img class="h-full rounded-l-xl" src="{{product.imagePaths[0]}}" alt="Album"/>
+                <div class="p-6 w-full flex flex-col">
+                    <h2 class="text-2xl">{{ product.name }}</h2>
+                    <p class="flex-grow overflow-hidden">{{ product.shortDescription }}</p>
+                    <div class="card-actions flex flex-wrap justify-end p-2">
+                        <a href="/product/{{ product.id }}">
+                            <button class="btn btn-primary">Listen</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

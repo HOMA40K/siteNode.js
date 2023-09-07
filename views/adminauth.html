@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{%block content%}
+<form class="" method="post">
+    <div class="">
+        <div class="form-control w-full max-w-xs mx-auto">
+            <label class="label">
+                <span class="label-text">Имя</span>
+            </label>
+            <input type="text" name="username" placeholder="" class="input input-bordered w-full max-w-xs" />
+            <label class="label">
+            </label>
+        </div>
+        <div class="form-control w-full max-w-xs mx-auto">
+            <label class="label">
+                <span class="label-text">Пароль</span>
+            </label>
+            <input type="password" name="password" placeholder="" class="input input-bordered w-full max-w-xs" />
+            <label class="label">
+            </label>
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </div>
+        <div></div>
+    </div>
+</form>
+{%endblock%}

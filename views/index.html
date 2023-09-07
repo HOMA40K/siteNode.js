@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <div>
+            <div class="hero min-h-screen" style="background-image: url(/img/image.svg);">
+                <div class="hero-content text-center text-neutral-content">
+                    <div class="max-w-md">
+                        <h1 class="mb-5 text-base lg:text-5xl font-bold md:text-3xl " style="color:#fff;">Производство электрощитового
+                        оборудования
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" my-2 sm:text-sm md:text-3xl" style="text-align: center;">Наша продукция</div>
+        <hr class="w-1/2 mx-auto h-1 bg-[#1d3a6d]">
+        <br>
+        <!-- cards -->
+        <div id="cards" class="h-fit">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 justify-items-center mx-6">
+                <div class="card w-full bg-base-100 myShadow">
+                    <a href="/category/vzrivozashitnoe">
+                        <figure class="px-10 pt-10">
+                            <img src="/img/card1.svg" class="rounded-xl"/>
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <h2 class="card-title mt-auto">Взрывозащитное оборудование</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card w-full bg-base-100 myShadow">
+                    <a href="/category/pozarnie">
+                        <figure class="px-10 pt-10">
+                            <img src="/img/card2.svg" class="rounded-xl"/>
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <h2 class="card-title mt-auto">Пожарные щиты в соответсвии с 043 регламентом</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card w-full bg-base-100 myShadow">
+                    <a href="/category/19">
+                        <figure class="px-10 pt-10">
+                            <img src="/img/card3.svg" class="rounded-xl"/>
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <h2 class="card-title mt-auto">19 “ стойки</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card w-full bg-base-100 myShadow">
+                    <a href="/category/electoobogreva">
+                        <figure class="px-10 pt-10">
+                            <img src="/img/card4.svg" class="rounded-xl"/>
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <h2 class="card-title mt-auto">Шкафы Электрообогрева</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card w-full bg-base-100 myShadow">
+                    <a href="/category/avtomotizatsii">
+                        <figure class="px-10 pt-10">
+                            <img src="/img/card5.svg" class="rounded-xl"/>
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <h2 class="card-title mt-auto">Шкафы Автоматизации</h2>
+                        </div>
+                    </a>
+                </div>
+                <a href="/category/raspredelitelnie" class="card w-full bg-base-100 myShadow">
+                    <figure class="px-10 pt-10">
+                    <img src="/img/card6.png" class="rounded-xl"/>
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title mt-auto">Распределительные щиты</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+            {% include "./parts/us_info.html" %}
+            {% include "./parts/orderpart.html" %}
+            {% include "./parts/suppliers.html" %}
+            <!-- certificates -->
+        <div id="certificates" class="grid grid-cols-3 gap-4">
+            <div class="inline-block">
+                <img src="/img/cert3.png" alt=""></div>
+            <div class="inline-block">
+                <img src="/img/cert2.png" alt=""></div>
+            <div class="inline-block">
+                <img src="/img/cert1.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
