@@ -21,6 +21,8 @@
     "express-jwt": "^8.4.1",
     "express-session": "^1.17.3",
     "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
     "jwt-express": "^1.1.0",
     "luxon": "^3.3.0",
     "nodemailer": "^6.9.4",

@@ -42,13 +42,13 @@
         <span class="footer-title">Контакты</span>
         <a  class="link link-hover" href="/contact">Страница контактов</a>
         <div class="">
-          <a class="link link-hover flex">
+          <a id="podMail" onclick="copyText(this.id)" class="link link-hover flex">
               <img src="/svg/mail.svg" class="h-6 w-6 mr-2" alt="">
               {{info.email}}
           </a>
         </div>
         <div class="">
-          <a class="link link-hover flex">
+          <a id="podTel" onclick="copyText(this.id)" class="link link-hover flex">
               <img src="/svg/phone-call.svg" class="h-6 w-6 mr-2" alt="">
               {{info.phoneNumber}}
           </a>

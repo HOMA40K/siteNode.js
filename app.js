@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import FlashMessages  from "./middleware/NunjucksGlobals.js"
 import fileUpload from "express-fileupload";
 import jwt from "jwt-express";
+import http from "http";
+import https from "https";
 // import {expressjwt as jwt} from "express-jwt";
 
 //TODO поменять сертификаты на свои. Почту поменять✓, Номер телефона✓. Информация о контактах✓. Починить скролл✓.
@@ -86,11 +88,28 @@ app.use("/", productsRouter);
 app.use("/", orderRouter);
 
 
-
-const port = 3000
-try {
-    //await connectDB(process.env.)
-} catch(error){
-
+var httpServer;
+var httpsServer;
+if(process.env.NODE_ENV === "development"){
+	httpServer = http.createServer(app);
 }
-app.listen(port, console.log(`server started on http://localhost:${port}`))
+else{
+	if(fs.existsSync("src/cert/privkey.pem")){
+		var privateKey  = fs.readFileSync("src/cert/privkey.pem", "utf8");
+		var certificate = fs.readFileSync("src/cert/cert.pem", "utf8");
+		var credentials = {key: privateKey, cert: certificate};
+		httpsServer = https.createServer(credentials, app);
+	}
+	else{
+		console.log("WARN", "Certificate not found, falling back to HTTP");
+	}
+	httpServer = http.createServer(app);
+}
+httpServer.listen(process.env.HTTP_PORT, () => {
+	console.log("INFO", `Http server is running on http://localhost:${process.env.HTTP_PORT}`);
+});
+if(httpsServer){
+	httpsServer.listen(process.env.HTTPS_PORT, () => {
+		console.log("INFO", `Https server is running on port: ${process.env.HTTPS_PORT}`);
+	});
+}

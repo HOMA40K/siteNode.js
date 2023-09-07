@@ -49,11 +49,17 @@
             <li><a href="/#certificates">Сертификаты</a></li>
             <li><a href="/#us_info" >Как работаем</a></li>
             <li><a href="/contact">Контакты</a></li>
-            <li><a>тел: {{info.phoneNumber}}</a><a>почта: {{info.email}}</a></li>
+            <li><a id="telNav" onclick="copyText(this.id)" >{{info.phoneNumber}}</a><a id="mailNav" onclick="copyText(this.id)" >{{info.email}}</a></li>
             <li><a href="/#order">Заказать</a></li>
         </ul>
     </div>
-
-    
     <!-- отдельная часть нава -->
 </div>
+
+<script>
+    function copyText(id) {
+        let text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        alert('Скопировано в буфер обмена');
+    }
+</script>
