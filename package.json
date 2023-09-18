@@ -28,6 +28,7 @@
     "nodemailer": "^6.9.4",
     "nodemon": "^2.0.22",
     "nunjucks": "^3.2.4",
+    "pm2": "^5.3.0",
     "surreal": "^0.3.7",
     "surrealdb": "^0.0.1-beta.4",
     "surrealdb.js": "^0.8.4"

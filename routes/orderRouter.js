@@ -45,7 +45,7 @@ async function sendEmailFirmFeedback(name, email, note,file){
 		from: "\"МАРМАКС\" <snab@marmakc.com>",
 		to: "snab@marmakc.com",
 		subject: "Отзыв",
-		text: `Имя ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
+		text: `Номер телефона ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
 
         attachments: [
             {
@@ -61,7 +61,7 @@ async function sendEmailFirmOrder(name, email, note, file){
 		from: "\"МАРМАКС\" <snab@marmakc.com>",
 		to: "snab@marmakc.com",
 		subject: "Заказ",
-		text: `Имя ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
+		text: `Номер телефона ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
 
         attachments: [
             {

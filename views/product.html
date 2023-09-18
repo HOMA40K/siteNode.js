@@ -11,19 +11,19 @@
                 {{box.name}}
             </h2>
             <ul class="mx-10">
-                <p>{{box.shortDescription}}</p>
+                <p class="indent-8">{{box.shortDescription}}</p>
             </ul>
             {% if box.longDescription !=""%}
             <h3 class="text-center font-bold text-xl my-5">
                 Подробное описание
             </h3>
             <ul class="mx-10">
-                <p>{{box.longDescription}}</p>
+                <p class="indent-8">{{box.longDescription}}</p>
             </ul>
             {% endif %}
         </div>
     </div>
-    {% include "./parts/orderpart.html"%}
+    
 </div>
 
 {% endblock %}
