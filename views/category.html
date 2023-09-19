@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 p-10"> 
         {% for product in products %}
             <div class="text-white bg-[#1d3a6d] flex h-96 rounded-xl">
-                <img class="w-1/2 h-full rounded-l-xl " src="{{product.imagePaths[0]}}" onerror="this.onerror=null; this.src='/img/default.png'"/>
+                <img id="" class="w-1/2 h-full rounded-l-xl object-cover" src="{{product.imagePaths[0]}}" onerror="this.classList.replace('object-cover', 'object-contain'); this.onerror=null; this.src='/img/default.png'"/>
                 <div class="p-6 w-1/2 flex-col">
                     <h2 class="text-2xl">{{ product.name }}</h2>
                     <p class="flex-grow h-60 overflow-y-auto overflow-x-hidden ">{{ product.shortDescription }}</p>

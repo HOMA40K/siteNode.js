@@ -7,7 +7,6 @@
     src: url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
 }
 
-
 .myTextColor {
     color: #1d3a6d
 }
@@ -17,11 +16,14 @@
     height: 100%;
     background-repeat: no-repeat;
 }
-
+html{
+    scroll-behavior: smooth;
+}
 body {
     background-color: #F3F5FA;
     font-family: 'Nunito Sans', sans-serif;
     color: #1d3a6d;
+    /* scroll-behavior: smooth; */
 }
 
 .card0 {

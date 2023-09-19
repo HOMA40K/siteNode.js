@@ -78,11 +78,10 @@
 
 <!-- Open the modal using ID.showModal() method -->
 <dialog id="my_modal_1" class="modal min-w-full min-h-screen rounded-none">
-    <div class="modal-box min-w-full min-h-screen bg-no-repeat bg-[url(/img/image.svg);] bg-cover">
+    <div class="modal-box min-w-full rounded-none min-h-screen bg-no-repeat bg-[url(/img/image.svg);] bg-cover">
         <div>
             <h1 class="font-bold text-3xl text-[#fff] text-center">Заявка на индивидуальный заказ</h3>
         </div>
-
         <div class="modal-action">
             <form action="/sendorder" method="post" encType="multipart/form-data" class="mx-auto">
                 <div id="order" class="p-6 mt-6">
