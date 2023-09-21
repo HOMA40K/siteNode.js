@@ -6,17 +6,20 @@
 <head>
 	<link href="/css/style.css" rel="stylesheet">
 	<link href="/styles.css" rel="stylesheet">
-	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/siteimg/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}{% endblock %} MARMAKS</title>
 	{% block head %}{% endblock %}
 </head>
 
-<body class="min-h-screen relative">
-	<div>
+<body class="relative">
+	<div class="flex flex-col min-h-screen">
 		<button onclick="topFunction()" id="scrollButton" class="w-12 h-12 fixed hidden bottom-5 right-8 z-50 text-lg outline-none bg-[#fff] p-4 pt-3 border-2 rounded-md border-[#1d3a6d]"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg></button>
+
 		{% include "./parts/nav.html" %}
-		{% block content %}{% endblock %}
+		<div class="container flex-1">
+			{% block content %}{% endblock %}
+		</div>
 		{% include "./parts/podval.html" %}
 		<div class="toast toast-top toast-end">
 			

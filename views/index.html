@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
     <div>
-        <div>
-            <div class="hero min-h-screen" style="background-image: url(/img/image.svg);">
+        <div class="min-h-screen">
+            <div class="hero min-h-screen w-full absolute left-0" style="background-image: url(/siteimg/image.svg);">
                 <div class="hero-content text-center text-neutral-content">
                     <div class="max-w-md">
-                        <h1 class="mb-5 text-base lg:text-5xl font-bold md:text-3xl " style="color:#fff;">Производство электрощитового
-                        оборудования
+                        <h1 class="mb-5 text-base lg:text-5xl font-bold md:text-3xl " style="color:#fff;">
+                            Производство электрощитового оборудования
                         </h1>
                     </div>
                 </div>
             </div>
         </div>
         <div class=" my-2 sm:text-sm md:text-3xl" style="text-align: center;">Наша продукция</div>
-        <hr class="w-1/2 mx-auto h-1 bg-[#1D3A6D]">
+        <hr class="w-1/2 mx-auto h-1 bg-[#A2AEC3]">
         <br>
         <!-- cards -->
-        <div id="cards" class="h-fit">
+        <div id="cards" class="h-fit scroll-mt-40">
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-9 justify-items-center mx-6">
                     <a href="/category/vzrivozashitnoe" class="card w-full bg-base-100 myShadow">
                         <figure class="px-10 pt-10">
-                            <img src="/img/card1.svg" class="rounded-xl"/>
+                            <img src="/siteimg/card1.svg" class="rounded-xl"/>
                         </figure>
                         <div class="card-body items-center text-center">
                             <h2 class="card-title mt-auto">Взрывозащитное оборудование</h2>
@@ -28,7 +28,7 @@
                     </a>
                     <a href="/category/pozarnie" class="card w-full bg-base-100 myShadow">
                         <figure class="px-10 pt-10">
-                            <img src="/img/card2.svg" class="rounded-xl"/>
+                            <img src="/siteimg/card2.svg" class="rounded-xl"/>
                         </figure>
                         <div class="card-body items-center text-center">
                             <h2 class="card-title mt-auto">Пожарные щиты в соответсвии с 043 регламентом</h2>
@@ -36,7 +36,7 @@
                     </a>
                     <a href="/category/19" class="card w-full bg-base-100 myShadow">
                         <figure class="px-10 pt-10">
-                            <img src="/img/card3.svg" class="rounded-xl"/>
+                            <img src="/siteimg/card3.svg" class="rounded-xl"/>
                         </figure>
                         <div class="card-body items-center text-center">
                             <h2 class="card-title mt-auto">19 “ стойки</h2>
@@ -44,7 +44,7 @@
                     </a>
                     <a href="/category/electoobogreva" class="card w-full bg-base-100 myShadow">
                         <figure class="px-10 pt-10">
-                            <img src="/img/card4.svg" class="rounded-xl"/>
+                            <img src="/siteimg/card4.svg" class="rounded-xl"/>
                         </figure>
                         <div class="card-body items-center text-center ">
                             <h2 class="card-title mt-auto">Шкафы Электрообогрева</h2>
@@ -52,7 +52,7 @@
                     </a>
                     <a href="/category/avtomotizatsii" class="card w-full bg-base-100 myShadow">
                         <figure class="px-10 pt-10">
-                            <img src="/img/card5.svg" class="rounded-xl"/>
+                            <img src="/siteimg/card5.svg" class="rounded-xl"/>
                         </figure>
                         <div class="card-body items-center text-center">
                             <h2 class="card-title mt-auto">Шкафы Автоматизации</h2>
@@ -60,7 +60,7 @@
                     </a>
                 <a href="/category/raspredelitelnie" class="card w-full bg-base-100 myShadow">
                     <figure class="px-10 pt-10">
-                        <img src="/img/card6.png" class="rounded-xl"/>
+                        <img src="/siteimg/card6.png" class="rounded-xl"/>
                     </figure>
                     <div class="card-body items-center text-center">
                         <h2 class="card-title mt-auto">Распределительные щиты</h2>
@@ -69,18 +69,22 @@
             </div>
         </div>
             {% include "./parts/us_info.html" %}
-            {% include "./parts/suppliers.html" %}
+           
             <!-- certificates -->
-        <div class=" my-2 sm:text-sm md:text-3xl" style="text-align: center;">Cертификаты</div>
-        <hr class="w-1/2 mx-auto h-1 bg-[#1D3A6D]">    
-        <div id="certificates" class="grid grid-cols-3 gap-6">
-            <div class="inline-block">
-                <img src="/img/cert3.png" alt=""></div>
-            <div class="inline-block">
-                <img src="/img/cert2.png" alt=""></div>
-            <div class="inline-block">
-                <img src="/img/cert1.png" alt=""></div>
+        <div class="my-2 sm:text-sm md:text-3xl" style="text-align: center;">Cертификаты</div>
+        <div id="certificates" class="scroll-mt-40">
+            <hr class="w-1/2 mx-auto h-1 bg-[#A2AEC3]">    
+            {%include "./parts/certificates.html"%}
+                <!-- <div class="grid grid-cols-3 gap-6 p-9">
+                    <div class="inline-block">
+                        <img src="/siteimg/cert3.png" alt=""></div>
+                    <div class="inline-block">
+                        <img src="/siteimg/cert2.png" alt=""></div>
+                    <div class="inline-block">
+                        <img src="/siteimg/cert1.png" alt=""></div>
+                    </div>
+                </div> -->
             </div>
-        </div>
+        {% include "./parts/suppliers.html" %}
     </div>
 {% endblock %}

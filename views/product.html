@@ -2,15 +2,35 @@
 {% import "parts/productGallery.html" as productGallery %}
 
 {%block content%}
+<div class="text-sm breadcrumbs">
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li>
+            <a href='/category/{% if box.type == "Распределительные щиты" %}raspredelitelnie
+        {% elif box.type == "Шкафы Автоматизации" %}avtomotizatsii
+        {% elif box.type == "Шкафы Электрообогрева" %}electoobogreva
+        {% elif box.type == "19 “ стойки" %}19
+        {% elif box.type == "Пожарные щиты в соответсвии с 043 регламентом" %}pozarnie
+        {% elif box.type == "Взрывозвщищеное оборудование" %}vzrivozashitnoe
+        {% endif %}'>{{ box.type }}</a>
 
-<div>
-    <div class="flex flex-col xl:flex-row">
+        </li>
+        <li>{{box.name}}</li>
+    </ul>
+</div>
+<!-- Make page nvigation -->
+
+<div class="px-12">
+    <div class="flex flex-col xl:flex-row mb-12 lg:mt-24">
+        <h2 class="text-center font-bold text-2xl my-5 block xl:hidden">
+            {{box.name}}
+        </h2>
         {{ productGallery.gallery(box.imagePaths) }}
         <div class="flex-1">
-            <h2 class="text-center font-bold text-xl my-5">
+            <h3 class="text-center font-bold text-3xl my-5 hidden xl:block">
                 {{box.name}}
-            </h2>
-            
+            </h3>
+
             <ul class="mx-10">
                 <p class="indent-8">{{box.shortDescription}}</p>
             </ul>
@@ -24,7 +44,7 @@
             {% endif %}
         </div>
     </div>
-    
+
 </div>
 
 {% endblock %}

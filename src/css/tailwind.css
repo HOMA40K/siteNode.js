@@ -12,13 +12,11 @@
 }
 
 .defoultImg{
-    background-image:url('/img/default.svg');
+    background-image:url('/siteimg/default.svg');
     height: 100%;
     background-repeat: no-repeat;
 }
-html{
-    scroll-behavior: smooth;
-}
+
 body {
     background-color: #F3F5FA;
     font-family: 'Nunito Sans', sans-serif;
@@ -50,4 +48,64 @@ body {
 
 .myShadow{
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+
+#snackbar {
+    /* By Default, Hidden */
+    visibility: hidden; 
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 2px;
+    padding: 16px;
+    /* To always Keep on 
+       Top of screen */
+    position: fixed;
+  
+    /* To be displayed above 
+       Parent HTML DOM element  */ 
+    z-index: 1; 
+  
+    /* Position Bottom Left 
+       Corner of Screen */
+    left: 10px;
+    bottom: 30px;
+}
+  
+/* Dynamically Appending this 
+   Class to #snackbar via JS */
+.show-bar {
+    visibility: visible !important;
+    /* fadeout Time decided in 
+       accordance to Total Time */
+    /* In case, Time = 3s, 
+       fadeout 0.5s 2.5s */
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+  
+/* when the Snackbar Appears */
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+  
+/* when the Snackbar Disappears
+   from the Screen */
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }

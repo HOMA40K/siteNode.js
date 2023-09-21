@@ -1,4 +1,9 @@
-<div class="sticky top-0 z-50">
+<div  class="sticky top-0 z-[100]">
+    <div id="toast" class="toast toast-top toast-end hidden top-10 right-10 z-[101]">
+        <div class="alert alert-info">
+          <span>Скопировано</span>
+        </div>
+    </div>
     <div class="navbar bg-base-100 p-0 m-0">
         <div class="navbar h-fit">
             <div class="flex-1">
@@ -78,67 +83,112 @@
 
 <!-- Open the modal using ID.showModal() method -->
 <dialog id="my_modal_1" class="modal min-w-full min-h-screen rounded-none">
-    <div class="modal-box min-w-full rounded-none min-h-screen bg-no-repeat bg-[url(/img/image.svg);] bg-cover">
-        <div>
-            <h1 class="font-bold text-3xl text-[#fff] text-center">Заявка на индивидуальный заказ</h3>
-        </div>
+    <div class="modal-box min-w-full rounded-none min-h-screen bg-no-repeat bg-[url('/siteimg/image.svg')] bg-cover">
+        <form method="dialog">
+            <div class="grid grid-cols-3">
+                <!-- if there is a button in form, it will close the modal -->
+                <div>
+                    <button class=""><img src="/siteimg/back.svg" alt=""></button>
+                </div>
+                <div class="w-full">
+                    <img class="mx-auto" src="/siteimg/whitelogo.svg" alt="">
+                </div>
+            </div>
+        </form>
         <div class="modal-action">
-            <form action="/sendorder" method="post" encType="multipart/form-data" class="mx-auto">
-                <div id="order" class="p-6 mt-6">
-                    <div class="m-8 grid ">
-                        <h2 class="text-white text-center font-bold text-2xl">Заказ</h2>
-                        <div class="form-control w-full max-w-md">
+            <form action="/sendorder" method="post" encType="multipart/form-data" class="mx-auto w-full h-full">
+                <div id="order" class="h-full w-full py-6 mt-6">
+                    <div class="mx-auto lg:w-1/2 w-full bg-white rounded-2xl p-8 px-5 md:w-2/3 md:px-20 2xl:w-1/3">
+                        <div class="mx-auto  form-control w-full max-w-md">
                             <label class="label">
-                                <span class="label-text text-white">Номер телефона</span>
+                                <span class="label-text text-[#1d3a6d]">Номер телефона</span>
                             </label>
                             <input required type="text" name="name" class="input input-bordered w-full max-w-md" />
                         </div>
-                        <div class="form-control w-full max-w-md">
+                        <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
-                                <span class="label-text text-white">Почта</span>
+                                <span class="label-text text-[#1d3a6d]">Почта</span>
                             </label>
                             <input required type="email" name="email" class="input input-bordered w-full max-w-md" />
                         </div>
-                        <div class="form-control w-full max-w-md">
+                        <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
-                                <span class="label-text text-white">Примечание</span>
+                                <span class="label-text text-[#1d3a6d]">Примечание</span>
                             </label>
                             <input required type="text" name="note" class="input input-bordered w-full max-w-md" />
                         </div>
-                        <div class="form-control w-full max-w-md">
+                        <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
-                                <span class="label-text text-white">Файл</span>
+                                <span class="label-text text-">Файл</span>
                             </label>
-                            <input required multiple type="file" name="file"
-                                class="file-input file-input-bordered w-full max-w-md" />
-                            <div class="text-[#fff] my-4">
-                                <input class="mr-2" type="checkbox" id="" required>Политика конфиденциальности
+                            <div class="mx-auto form-control w-full max-w-md">
+                                <input required multiple type="file" name="file"
+                                    class="file-input file-input-bordered w-full max-w-md" />
+                                <div class="text-[#1d3a6d] my-4">
+                                    <input class="mr-2" type="checkbox" id="" required>Политика конфиденциальности
+                                </div>
                             </div>
                         </div>
-                        <div class="form-control w-full max-w-md pt-8">
-                            <button class="btn">Отправить</button>
+                        <div class="mx-auto w-fit mt-8"><button type="submit"
+                                class="btn mx-auto bg-[#1d3a6d] text-white">Отправить</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
-            <button class="btn fixed bottom-5 right-8 z-50 text-lg outline-none bg-[#fff] border-2 rounded-md">Закрыть</button>
-            
-        </form>
+
     </div>
 
 </dialog>
 
+<!-- <div class="mx-auto form-control w-full max-w-md">
+    <label class="label">
+        <span class="label-text text-[#1d3a6d]">Номер телефона</span>
+    </label>
+    <input required type="text" name="name" class="input input-bordered w-full max-w-md" />
+</div>
+<div class="mx-auto form-control w-full max-w-md">
+    <label class="label">
+        <span class="label-text text-[#1d3a6d]">Почта</span>
+    </label>
+    <input required type="email" name="email" class="input input-bordered w-full max-w-md" />
+</div>
+<div class="mx-auto form-control w-full max-w-md">
+    <label class="label">
+        <span class="label-text text-[#1d3a6d]">Примечание</span>
+    </label>
+    <input required type="text" name="note" class="input input-bordered w-full max-w-md" />
+</div>
+<div class="mx-auto form-control w-full max-w-md">
+    <label class="label">
+        <span class="label-text text-[#1d3a6d]">Файл</span>
+    </label>
+    <input required multiple type="file" name="file"
+        class="file-input file-input-bordered w-full max-w-md" />
+    <div class="text-[#fff] my-4">
+        <input class="mr-2" type="checkbox" id="" required>Политика конфиденциальности
+    </div>
+</div>
+<div class="mx-auto form-control w-full max-w-md pt-8">
+    <button class="btn">Отправить</button>
+</div> -->
+<div class="toast toast-top toast-end">
+    <div class="alert alert-info">
+      <span>New mail arrived.</span>
+    </div>
+</div>
 <script>
     async function copyText(id) {
         let text = document.getElementById(id).innerText;
         await navigator.clipboard.writeText(text);
-        alert('Скопировано в буфер обмена');
+        showToast();
     }
     function showMyModal() {
         document.getElementById("orderModal").showModal();
+    }
+    function showToast(){
+        document.getElementById("toast").classList.remove("hidden");
+        setTimeout(function(){ document.getElementById("toast").classList.add("hidden"); }, 4000);
     }
 
 

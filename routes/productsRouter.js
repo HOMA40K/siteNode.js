@@ -11,8 +11,7 @@ const router = express.Router();
     
 // })
 router.get("/product/:id", async (req, res)=> {
-    let box = await db.queryFirst(`SELECT * FROM ${req.params.id}`)
-
+    let box = await db.queryFirst(`SELECT * FROM item WHERE showId = "${req.params.id}"`)
     res.render("product", {box})
 });
 

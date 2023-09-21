@@ -54,21 +54,53 @@ export async function initDB() {
 			});
         
         
+		//Generate random id that contains 5 random numbers
+
+		function generateId() {
+			let id = "";
+		
+			for (let i = 0; i < 5; i++) {
+				id += Math.floor(Math.random() * 10);
+			}
+			if (checkId(id)) {
+				return id;
+			}
+
+		}
+		//Check if any of items has the same id as generated id
+		function checkId(checkId) {
+			const items = db.select("item");
+			for (let i = 0; i < items.length; i++) {
+				if (items[i].showId == checkId) {
+					return false;
+				}
+			}
+			return true;
+		}
         const items = await db.select("item");
+		for(let i = 0; i < items.length; i++){
+			if(items[i].showId == undefined){
+				db.merge(`${items[i].id}`, {
+					showId: generateId()
+				});
+			}
+		}
         if(items.length == 0){
             await db.create("item", {
 				name: "somebox",
 				shortDescription: "lorem 1",
 				longDescription: "lorem 2",
-				type: "box1",
-				imagePaths : ["/img/serv1.png", "/img/serv2.png", "/img/serv3.png", "/img/serv4.png"]
+				type: "Взрывозвщищеное оборудование",
+				imagePaths : ["/img/serv1.png", "/img/serv2.png", "/img/serv3.png", "/img/serv4.png"],
+				showId: generateId()
             })
 			await db.create("item", {
 				name: "somebox",
 				shortDescription: "lorem 1",
 				longDescription: "lorem 2",
-				type: "box1",
-				imagePaths : ["/img/box1.png", "/img/box2.png","/img/box3.png","/img/box4.png"]
+				type: "Взрывозвщищеное оборудование",
+				imagePaths : ["/img/box1.png", "/img/box2.png","/img/box3.png","/img/box4.png"],
+				showId: generateId()
 			})
                 .then((res) => {
                     logger.log("INFO", "Created default item", res);
@@ -81,6 +113,7 @@ export async function initDB() {
 				email: "info@marmaks"
 			});
 		}
+		console.log(items)
 		const users = await db.select("user");
 		if(users.length == 0){
 			await db.create("user", {

@@ -43,7 +43,8 @@ router.post("/admin/addBox", async (req, res) => {
 		shortDescription: req.body.shortDescription,
 		longDescription: req.body.longDescription,
 		type: req.body.type,
-		imagePaths: myImagePaths
+		imagePaths: myImagePaths,
+		showId: generateId()
 	})
 	return res.redirect("/admin");
 });

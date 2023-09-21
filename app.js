@@ -11,8 +11,6 @@ import https from "https";
 import fs from "fs";
 // import {expressjwt as jwt} from "express-jwt";
 
-//TODO поменять сертификаты на свои✓. Почту поменять✓, Номер телефона✓. Информация о контактах✓. Починить скролл✓.
-
 
 import db, { initDB } from "./db/surreal.js";
 import adminRouter from "./routes/adminRouter.js";

@@ -1,23 +1,67 @@
 {% extends "base.html" %}
 {% import "parts/small_header.html" as header %}
 {% block content %}
+<div class="text-sm breadcrumbs">
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li>
+            категории
+        </li>
+    </ul>
+</div>
 
-    {{ header.header(products[0].type) }}
-    {% include "parts/our_products.html" %}
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 p-10"> 
-        {% for product in products %}
-            <div class="text-white bg-[#1d3a6d] flex h-96 rounded-xl">
-                <img id="" class="w-1/2 h-full rounded-l-xl object-cover" src="{{product.imagePaths[0]}}" onerror="this.classList.replace('object-cover', 'object-contain'); this.onerror=null; this.src='/img/default.png'"/>
-                <div class="p-6 w-1/2 flex-col">
-                    <h2 class="text-2xl">{{ product.name }}</h2>
-                    <p class="flex-grow h-60 overflow-y-auto overflow-x-hidden ">{{ product.shortDescription }}</p>
-                    <div class="card-actions flex flex-wrap justify-end p-2">
-                        <a href="/product/{{ product.id }}">
-                            <button class="btn btn-primary bg-[#fff] text-[#1d3a6d]">Подробнее</button>
-                        </a>
-                    </div>
-                </div>
+{{ header.header(products[0].type) }}
+{% include "parts/our_products.html" %}
+<div class="w-full flex self-center mt-4 xl:hidden">
+    <divc class="mx-auto w-fit">
+    <select class="mx-auto select select-bordered w-full max-w-xs" name="type" onchange="location = this.value;">
+        <option disabled selected>Выберите категорию</option>
+        <option {{ "selected" if box.type=="Взрывозвщищеное оборудование" }} value="vzrivozashitnoe">Взрывозвщищеное
+            оборудование</option>
+        <option {{ "selected" if box.type=="Пожарные щиты в соответсвии с 043 регламентом" }} value="pozarnie">Пожарные
+            щиты в соответсвии с 043 регламентом</option>
+        <option {{ "selected" if box.type=="19 “ стойки" }} value="19">19 “ стойки</option>
+        <option {{ "selected" if box.type=="Шкафы Электрообогрева" }} value="electoobogreva">Шкафы Электрообогрева
+        </option>
+        <option {{ "selected" if box.type=="Шкафы Автоматизации" }} value="avtomotizatsii">Шкафы Автоматизации</option>
+        <option {{ "selected" if box.type=="Распределительные щиты" }} value="raspredelitelnie">Распределительные щиты
+        </option>
+    </select>
+</div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-10 p-10">
+    {% for product in products %}
+    <div class="text-white bg-[#1d3a6d] md:flex h-96 rounded-xl hidden">
+        <img id="" class="w-1/2 h-full rounded-l-xl object-cover" src="{{product.imagePaths[0]}}"
+            onerror="this.classList.replace('object-cover', 'object-contain'); this.onerror=null; this.src='/siteimg/default.png'" />
+        <div class="p-6 w-1/2 flex-col">
+            <h2 class="text-2xl">{{ product.name }}</h2>
+            <p class="flex-grow h-60 overflow-y-auto overflow-x-hidden ">{{ product.shortDescription }}</p>
+            <div class="card-actions flex flex-wrap justify-end p-2">
+                <a href="/product/{{ product.showId }}">
+                    <button class="btn btn-primary bg-[#fff] text-[#1d3a6d]">Подробнее</button>
+                </a>
             </div>
-        {% endfor %}
+        </div>
     </div>
+    {% endfor %}
+    {% for product in products %}
+    <div class="card block md:hidden bg-base-100 shadow-xl">
+        <figure><img src="{{product.imagePaths[0]}}" alt="Album"
+                onerror="this.classList.replace('object-cover', 'object-contain'); this.onerror=null; this.src='/siteimg/default.png'" />
+        </figure>
+        <div class="card-body">
+            <h2 class="card-title">{{ product.name }}</h2>
+            <p>{{ product.shortDescription }}</p>
+            <div class="card-actions justify-end">
+                <a href="/product/{{ product.showId }}">
+                    <button class="btn btn-primary">Подробнее</button>
+                </a>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
