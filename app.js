@@ -100,13 +100,17 @@ else{
 		httpsServer = https.createServer(credentials, app);
 	}
 	else{
-		console.log("WARN", "Certificate not found, falling back to HTTP");
+		console.log("ERROR", "Certificate not found");
 	}
-	httpServer = http.createServer(app);
 }
-httpServer.listen(process.env.HTTP_PORT, () => {
-	console.log("INFO", `Http server is running on http://localhost:${process.env.HTTP_PORT}`);
-});
+
+if(process.env.NODE_ENV === "development"){
+	
+	httpServer.listen(process.env.HTTP_PORT, () => {
+		console.log("INFO", `Http server is running on http://localhost:${process.env.HTTP_PORT}`);
+	});
+}
+
 if(httpsServer){
 	httpsServer.listen(process.env.HTTPS_PORT, () => {
 		console.log("INFO", `Https server is running on port: ${process.env.HTTPS_PORT}`);

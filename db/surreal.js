@@ -113,7 +113,6 @@ export async function initDB() {
 				email: "info@marmaks"
 			});
 		}
-		console.log(items)
 		const users = await db.select("user");
 		if(users.length == 0){
 			await db.create("user", {

@@ -1,107 +1,28 @@
-<div id="certificates" class="relative font-inter antialiased scroll-mt-40">
-
-    <main class="relative  flex flex-col justify-cente overflow-hidden">
-        <div class="w-full max-w-5xl mx-auto px-4 md:px-6 py-6">
-
-            <!-- Card slider  -->
-            <section class="px-12">
-                <div class="max-w-lg mx-auto relative">
-
-                    <input id="article-01" type="radio" name="slider" class="sr-only peer/01">
-                    <input id="article-02" type="radio" name="slider" class="sr-only peer/02" checked>
-                    <input id="article-03" type="radio" name="slider" class="sr-only peer/03">
-
-                    <div class="
-                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
-                        peer-focus-visible/01:[&_article]:ring
-                        peer-focus-visible/01:[&_article]:ring-indigo-300
-                        peer-checked/01:relative
-                        peer-checked/01:z-50
-                        peer-checked/01:translate-x-0
-                        peer-checked/01:scale-100
-                        peer-checked/01:[&>label]:pointer-events-none
-                        peer-checked/02:-translate-x-20
-                        peer-checked/02:scale-[83.75%]
-                        peer-checked/02:z-40
-                        peer-checked/03:-translate-x-40
-                        peer-checked/03:z-30
-                        peer-checked/04:-translate-x-40                    
-                        peer-checked/04:opacity-0
-                        peer-checked/05:-translate-x-40
-                    ">
-                        <label class="absolute inset-0 " for="article-01"><span class="sr-only">Focus on the big
-                                picture</span></label>
-                        <article class="bg-white p-6 rounded-lg shadow-2xl">
-                            <img src="/siteimg/cert2.png" class="w-full" alt="">
-                        </article>
-                    </div>
-
-                    <div class="
-                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
-                        peer-focus-visible/02:[&_article]:ring
-                        peer-focus-visible/02:[&_article]:ring-indigo-300                        
-                        peer-checked/01:translate-x-20
-                        peer-checked/01:scale-[83.75%]
-                        peer-checked/01:z-40
-                        peer-checked/02:relative
-                        peer-checked/02:z-50
-                        peer-checked/02:translate-x-0
-                        peer-checked/02:scale-100
-                        peer-checked/02:[&>label]:pointer-events-none
-                        peer-checked/03:-translate-x-20
-                        peer-checked/03:scale-[83.75%]
-                        peer-checked/03:z-40
-                        peer-checked/04:-translate-x-40
-                        peer-checked/04:z-30
-                        peer-checked/05:-translate-x-40 
-                        peer-checked/05:opacity-0
-                    ">
-                        <label class="absolute inset-0" for="article-02"><span class="sr-only">Focus on the big
-                                picture</span></label>
-                        <article class="bg-white p-6 rounded-lg shadow-2xl">
-                            <img src="/siteimg/cert2.png" class="w-full" alt="">
-                        </article>
-                    </div>
-
-                    <div class="
-                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
-                        peer-focus-visible/03:[&_article]:ring
-                        peer-focus-visible/03:[&_article]:ring-indigo-300                          
-                        peer-checked/01:translate-x-40
-                        peer-checked/01:z-30
-                        peer-checked/02:translate-x-20
-                        peer-checked/02:scale-[83.75%]
-                        peer-checked/02:z-40
-                        peer-checked/03:relative
-                        peer-checked/03:z-50
-                        peer-checked/03:translate-x-0
-                        peer-checked/03:scale-100
-                        peer-checked/03:[&>label]:pointer-events-none
-                        peer-checked/04:-translate-x-20
-                        peer-checked/04:scale-[83.75%]
-                        peer-checked/04:z-40
-                        peer-checked/05:-translate-x-40
-                        peer-checked/05:z-30                  
-                    ">
-                        <label class="absolute inset-0" for="article-03"><span class="sr-only">Focus on the big
-                                picture</span></label>
-                        <article class="bg-white p-6 rounded-lg shadow-2xl">
-                            <img src="/siteimg/cert2.png" class="w-full" alt="">
-                        </article>
-                    </div>
-
-                </div>
+<div>
+    <div class="gallery flex justify-center items-center">
+        <div class="image-container relative">
+          <img src="/siteimg/cert3.png" alt="Image 1" class="image" />
         </div>
-        </section>
-        <!-- End: Card slider  -->
-
+        <div class="image-container relative">
+          <img src="/siteimg/cert2.png" alt="Image 2" class="image" />
+        </div>
+        <div class="image-container relative">
+          <img src="/siteimg/cert1.png" alt="Image 3" class="image" />
+        </div>
+      </div>
 </div>
-
-</main>
-
-<!-- Page footer -->
-
-<!-- Banner with links -->
-
-
-</div>
+    <!-- <div>
+        <input type="radio" name="radio-1" class="radio" checked />
+        <input type="radio" name="radio-1" class="radio" />
+        <input type="radio" name="radio-1" class="radio" />
+    </div> -->
+<script>
+    $(document).ready(function() {
+    $('.image-container').onclick(function() {
+    $('.image-container').removeClass('selected');
+    $(this).addClass('selected');
+    $('.image-container').not('.selected').addClass('hidden');
+    $('.selected').removeClass('hidden');
+  });
+});
+</script>
