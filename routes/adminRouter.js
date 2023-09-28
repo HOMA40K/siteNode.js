@@ -37,7 +37,27 @@ router.post("/admin/addBox", async (req, res) => {
 			}
 		});
 	}
+	function generateId() {
+		let id = "";
+	
+		for (let i = 0; i < 5; i++) {
+			id += Math.floor(Math.random() * 10);
+		}
+		if (checkId(id)) {
+			return id;
+		}
 
+	}
+	//Check if any of items has the same id as generated id
+	function checkId(checkId) {
+		const items = db.select("item");
+		for (let i = 0; i < items.length; i++) {
+			if (items[i].showId == checkId) {
+				return false;
+			}
+		}
+		return true;
+	}
 	await db.create("item", {
 		name: req.body.name,
 		shortDescription: req.body.shortDescription,

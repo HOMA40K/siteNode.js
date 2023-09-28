@@ -143,38 +143,6 @@
     </div>
 
 </dialog>
-
-<!-- <div class="mx-auto form-control w-full max-w-md">
-    <label class="label">
-        <span class="label-text text-[#1d3a6d]">Номер телефона</span>
-    </label>
-    <input required type="text" name="name" class="input input-bordered w-full max-w-md" />
-</div>
-<div class="mx-auto form-control w-full max-w-md">
-    <label class="label">
-        <span class="label-text text-[#1d3a6d]">Почта</span>
-    </label>
-    <input required type="email" name="email" class="input input-bordered w-full max-w-md" />
-</div>
-<div class="mx-auto form-control w-full max-w-md">
-    <label class="label">
-        <span class="label-text text-[#1d3a6d]">Примечание</span>
-    </label>
-    <input required type="text" name="note" class="input input-bordered w-full max-w-md" />
-</div>
-<div class="mx-auto form-control w-full max-w-md">
-    <label class="label">
-        <span class="label-text text-[#1d3a6d]">Файл</span>
-    </label>
-    <input required multiple type="file" name="file"
-        class="file-input file-input-bordered w-full max-w-md" />
-    <div class="text-[#fff] my-4">
-        <input class="mr-2" type="checkbox" id="" required>Политика конфиденциальности
-    </div>
-</div>
-<div class="mx-auto form-control w-full max-w-md pt-8">
-    <button class="btn">Отправить</button>
-</div> -->
 <script>
     const input = document.querySelector(".tel");
 
@@ -232,10 +200,12 @@ input.addEventListener("input", (e) => {
     function showMyModal() {
         document.getElementById("orderModal").showModal();
     }
+    var a;
     function showToast() {
-        document.getElementById("toast").classList.add("hidden");
-        setTimeout(function () { document.getElementById("toast").classList.remove("hidden"); }, 100);
-        setTimeout(function () { document.getElementById("toast").classList.add("hidden"); }, 4000);
+        clearTimeout(a);
+        document.getElementById("toast").classList.remove("hidden")
+        a = setTimeout(function () { document.getElementById("toast").classList.add("hidden"); }, 3000);
+
     }
 
 </script>
