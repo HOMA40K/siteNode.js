@@ -123,6 +123,15 @@ export async function initDB() {
 					logger.log("INFO", "Created default user", res);
 				});
 		}
+		const certs = await db.select("cert");
+		if(certs.length == 0){
+			await db.create("cert", {
+				certPaths: ["/cert/cert1.png", "/cert/cert2.png", "/cert/cert3.png", "/cert/cert4.png"]
+			})
+				.then((res) => {
+					logger.log("INFO", "Created default cert", res);
+				});
+		}
 	} catch (err) {
 		logger.log("ERROR", err);
 	}

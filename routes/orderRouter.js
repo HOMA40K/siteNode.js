@@ -40,26 +40,26 @@ try {
 }
 
 
-async function sendEmailFirmFeedback(name, email, note,file){
-    let info = await transporter.sendMail({
-		from: "\"МАРМАКС\" <snab@marmakc.com>",
-		to: "snab@marmakc.com",
-		subject: "Отзыв",
-		text: `Номер телефона ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
+// async function sendEmailFirmFeedback(name, email, note,file){
+//     let info = await transporter.sendMail({
+// 		from: "\"МАРМАКС\" <snab@marmakc.com>",
+// 		to: "snab@marmakc.com",
+// 		subject: "Отзыв",
+// 		text: `Номер телефона ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
 
-        attachments: [
-            {
-                filename : file.file.name
-            }
-        ]
+//         attachments: [
+//             {
+//                 filename : file.file.name
+//             }
+//         ]
 
-	});
-}
+// 	});
+// }
 async function sendEmailFirmOrder(name, email, note, file){
 
     let info = await transporter.sendMail({
-		from: "\"МАРМАКС\" <snab@marmakc.com>",
-		to: "snab@marmakc.com",
+		from: `${process.env.SMTP_USER}`,
+		to: process.env.SMTP_USER,
 		subject: "Заказ",
 		text: `Номер телефона ---> ${name}\n Текст---> ${note} \n Почта ---> ${email}`,
 
@@ -77,9 +77,9 @@ async function sendEmailFirmOrder(name, email, note, file){
 }
 async function sendEmailClientOrder(email) {
 	let info = await transporter.sendMail({
-		from: "\"МАРМАКС\" <snab@marmakc.com>",
+		from: `${process.env.SMTP_USER}`,
 		to: email,
-		subject: "Заказ на мармакс",
+		subject: "Заказ на сайте мармакс",
 		text: "Ваш заказ принят! \nС вами свяжутся в течении нескольких рабочих дней.",
 
 
@@ -89,26 +89,26 @@ async function sendEmailClientOrder(email) {
 		console.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
 	}
 }
-export async function sendEmailClientFeedback(email) {
+// export async function sendEmailClientFeedback(email) {
 
-	let info = await transporter.sendMail({
-		from: "\"МАРМАКС\" <snab@marmakc.com>",
-		to: email,
-		subject: "Отзыв",
-		text: "Спасибо, что выбрали нас!"
+// 	let info = await transporter.sendMail({
+// 		from: "\"МАРМАКС\" <snab@marmakc.com>",
+// 		to: email,
+// 		subject: "Отзыв",
+// 		text: "Спасибо, что выбрали нас!"
 
-	});
+// 	});
 
-	if(process.env.NODE_ENV === "development"){
-		console.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
-	}
-}
+// 	if(process.env.NODE_ENV === "development"){
+// 		console.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
+// 	}
+// }
 
-router.post("/feedback", async (req, res) => {
-	sendEmailFirmFeedback(req.body.name, req.body.email, req.body.note, req.files);
-	sendEmailClientOrder(req.body.email);
-	return res.redirect("/")
-});
+// router.post("/feedback", async (req, res) => {
+// 	sendEmailFirmFeedback(req.body.name, req.body.email, req.body.note, req.files);
+// 	sendEmailClientOrder(req.body.email);
+// 	return res.redirect("/")
+// });
 
 router.post("/sendorder", async (req, res) => {
     sendEmailFirmOrder(req.body.name, req.body.email, req.body.note, req.files.file);

@@ -16,9 +16,9 @@ router.get("/admin", async (req, res) => {
 	if (req.jwt.valid) {
 		const boxes = await db.queryAll(`SELECT * FROM item`)
 		const info = await db.queryFirst(`SELECT * FROM info`)
-		return res.render("admin", { boxes, info });
+		const cert = await db.queryFirst(`SELECT * FROM cert`)
+		return res.render("admin", { boxes, info , cert});
 	}
-
 	return res.render("adminauth");
 });
 
@@ -111,6 +111,31 @@ router.post("/admin/modifyInfo", async (req, res) => {
 	await db.merge("info", {
 		phoneNumber: req.body.phoneNumber,
 		email: req.body.email
+	});
+	return res.redirect("/admin");
+});
+router.post("/admin/addcert", async (req, res) => { 
+	let myCertPaths = [];
+	if(req.body.imagePath.trim()!= ''){
+		myCertPaths = req.body.imagePath.trim().split(",");
+	}	
+	else{
+		myCertPaths = []
+	}
+	if (req.files.cert.name) {
+		req.files.cert = [req.files.cert];
+	}
+	for (let i = 0; i < req.files.cert.length; i++) {
+		let filePath = path.resolve(fileUploadPath, "cert", req.files.cert[i].name);
+		myCertPaths.push("/cert/" + req.files.cert[i].name);
+		req.files.cert[i].mv(filePath, (err) => {
+			if (err) {
+				console.log(err);
+			}
+		});
+	}
+	await db.merge("cert", {
+		imagePaths: myCertPaths
 	});
 	return res.redirect("/admin");
 });

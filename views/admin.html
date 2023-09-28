@@ -13,8 +13,8 @@
     <tbody>
         <form id="info" action="/admin/modifyInfo" method="post">
             <th></th>
-            <td><input onfocusout="sendInfo()" name="phoneNumber"value="{{ info.phoneNumber }}" class="textarea textarea-bordered"
-                placeholder=""></td>
+            <td><input onfocusout="sendInfo()" name="phoneNumber" value="{{ info.phoneNumber }}"
+                    class="textarea textarea-bordered" placeholder=""></td>
             <td><input onfocusout="sendInfo()" name="email" value="{{ info.email }}" class="textarea textarea-bordered"
                     placeholder=""></td>
             <th></th>
@@ -23,8 +23,8 @@
     <tfoot>
         <tr></tr>
         <th></th>
-            <td>Номер</td>
-            <td>Почта</td>
+        <td>Номер</td>
+        <td>Почта</td>
         <th></th>
         <tr></tr>
     </tfoot>
@@ -45,38 +45,48 @@
             </thead>
             <tbody id="tableBody">
                 {% for box in boxes %}
-                <form id="formMain{{ loop.index }}" action="/admin/modifyBox" encType="multipart/form-data" method="post">
+                <form id="formMain{{ loop.index }}" action="/admin/modifyBox" encType="multipart/form-data"
+                    method="post">
                     <tr>
                         <th class="thid">{{ loop.index }}</th>
-                        <td><input onfocusout="forOneSelectForm('{{loop.index}}')" name="name" class="textarea textarea-bordered" placeholder="" value="{{ box.name }}">
+                        <td><input onfocusout="forOneSelectForm('{{loop.index}}')" name="name"
+                                class="textarea textarea-bordered" placeholder="" value="{{ box.name }}">
                         </td>
-                        <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="shortDescription" class="textarea textarea-bordered"
-                                placeholder="">{{ box.shortDescription }}</textarea></td>
-                        <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="longDescription" class="textarea textarea-bordered"
-                                placeholder="">{{ box.longDescription }}</textarea></td>
-                        <td><select onfocusout="forOneSelectForm('{{loop.index}}')" value="{{ box.type }}" name="type" class="select w-full max-w-xs">
-                            <option disabled selected>Выберете тип</option>
-                            <option {{ "selected" if box.type == "Взрывозвщищеное оборудование" }}>Взрывозвщищеное оборудование</option>
-                            <option {{ "selected" if box.type == "Пожарные щиты в соответсвии с 043 регламентом" }}>Пожарные щиты в соответсвии с 043 регламентом</option>
-                            <option {{ "selected" if box.type == "Шкафы Электрообогрева" }}>Шкафы Электрообогрева</option>
-                            <option {{ "selected" if box.type == "Шкафы Автоматизации"}}>Шкафы Автоматизации</option>
-                            <option {{ "selected" if box.type == "19 “ стойки"}}>19 “ стойки</option>
-                            <option {{ "selected" if box.type == "Распределительные щиты"}}>Распределительные щиты</option>
-                          </select>
+                        <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="shortDescription"
+                                class="textarea textarea-bordered" placeholder="">{{ box.shortDescription }}</textarea>
+                        </td>
+                        <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="longDescription"
+                                class="textarea textarea-bordered" placeholder="">{{ box.longDescription }}</textarea>
+                        </td>
+                        <td><select onfocusout="forOneSelectForm('{{loop.index}}')" value="{{ box.type }}" name="type"
+                                class="select w-full max-w-xs">
+                                <option disabled selected>Выберете тип</option>
+                                <option {{ "selected" if box.type=="Взрывозвщищеное оборудование" }}>Взрывозвщищеное
+                                    оборудование</option>
+                                <option {{ "selected" if box.type=="Пожарные щиты в соответсвии с 043 регламентом" }}>
+                                    Пожарные щиты в соответсвии с 043 регламентом</option>
+                                <option {{ "selected" if box.type=="Шкафы Электрообогрева" }}>Шкафы Электрообогрева
+                                </option>
+                                <option {{ "selected" if box.type=="Шкафы Автоматизации" }}>Шкафы Автоматизации</option>
+                                <option {{ "selected" if box.type=="19 “ стойки" }}>19 “ стойки</option>
+                                <option {{ "selected" if box.type=="Распределительные щиты" }}>Распределительные щиты
+                                </option>
+                            </select>
                             <!-- <input onfocusout="forOneSelectForm('{{loop.index}}')" name="type" class="textarea textarea-bordered" placeholder="" value="{{ box.type }}"> -->
                         </td>
                         <td>
                             <div>
-                                <input onchange="newImg('{{loop.index}}'), forOneSelectForm('{{loop.index}}')" id="fileInput{{ loop.index }}" type="file"
-                                    name="icon" accept="image/png" multiple />
+                                <input onchange="newImg('{{loop.index}}'), forOneSelectForm('{{loop.index}}')"
+                                    id="fileInput{{ loop.index }}" type="file" name="icon" accept="image/png"
+                                    multiple />
                                 <input class="hidden" id="newFileBool{{loop.index}}" name="newFileBool" value="false">
                             </div>
                         </td>
                         <td class="">
-                            {% if  box.imagePaths | length > 0 %}
-                                <img id="img{{ loop.index }}" class="h-20 w-20 cursor-pointer"
-                                    onclick="prepareChangeProductImg('{{ box.imagePaths }} ','{{ box.id }}')"
-                                    src="{{ box.imagePaths[0] }}" alt="">
+                            {% if box.imagePaths | length > 0 %}
+                            <img id="img{{ loop.index }}" class="h-20 w-20 cursor-pointer"
+                                onclick="prepareChangeProductImg('{{ box.imagePaths }} ','{{ box.id }}')"
+                                src="{{ box.imagePaths[0] }}" alt="">
                             {% endif %}
                         </td>
                         <td>
@@ -93,7 +103,8 @@
                             <input name="id" class="hidden" value="{{ box.id }}">
                         </td>
                         <td>
-                            <input id="imagePath" name="imagePath" value="{{ box.imagePaths }}" type="text" class="hidden">
+                            <input id="imagePath" name="imagePath" value="{{ box.imagePaths }}" type="text"
+                                class="hidden">
                         </td>
                         <th>{{ loop.index }}</th>
                 </form>
@@ -139,7 +150,9 @@
                     placeholder="Текст подробный"></textarea>
             </div>
             <div>
-                <select id="select{{ loop.index }}" onload="setValue('{{loop.index}}','{{ box.type }}')" onfocusout="forOneSelectForm('{{loop.index}}')" required value="{{ box.type }}" name="type" class="select w-full max-w-xs">
+                <select id="select{{ loop.index }}" onload="setValue('{{loop.index}}','{{ box.type }}')"
+                    onfocusout="forOneSelectForm('{{loop.index}}')" required value="{{ box.type }}" name="type"
+                    class="select w-full max-w-xs">
                     <option disabled>Выберете тип</option>
                     <option>Взрывозвщищеное оборудование</option>
                     <option>Пожарные щиты в соответсвии с 043 регламентом</option>
@@ -147,11 +160,11 @@
                     <option>Шкафы Автоматизации</option>
                     <option>19 “ стойки</option>
                     <option>Распределительные щиты</option>
-                  </select>
+                </select>
                 <!-- <input class="textarea textarea-bordered mb-1" name="type" required placeholder="Тип шкафа"></textarea> -->
             </div>
             <div>
-                <input type="file" name="icon" accept="image/png" multiple required/>
+                <input type="file" name="icon" accept="image/png" multiple required />
             </div>
             <div class="flex items-center justify-center text-center my-4">
                 <button form="form2" class="btn bg-[#1d3a6d] text-[#fff]" type="submit">Подтвердить</button>
@@ -160,6 +173,24 @@
     </form>
 </div>
 
+<div id="testid">{{ cert.imagePaths }}</div>
+
+<div>
+    <h1 class="text-3xl">Сертификаты</h1>
+    <div class="w-96 h-96">
+        {% if cert.imagePaths | length > 0 %}
+        <img id="img{{ loop.index }}" class="h-full cursor-pointer"
+            onclick="prepareChangeProductImg('{{ cert.imagePaths }} ','{{ cert.id }}')" src="{{ cert.imagePaths[0] }}" alt="">
+        {% endif %}
+    </div>
+    <form action="/admin/addcert" method="post" encType="multipart/form-data" class="mb-5">
+        <input type="text" class="hidden" name="imagePath" value="{{ cert.imagePaths }}" id="">
+        <input type="file" name="cert" accept="image/png" multiple required />
+        <button class="btn btn-primary" type="submit">Добавить сертификат</button>
+        
+    </form>
+    
+</div>
 
 <dialog id="my_modal_4" class="modal">
     <div class="modal-box w-fit max-w-5xl">
@@ -199,6 +230,7 @@
         </form>
     </div>
 </dialog>
+
 <script>
     function sendInfo() {
         document.getElementById("info").submit();
@@ -214,6 +246,19 @@
         document.getElementById(`deleteBool${id}`).value = "delete";
         document.getElementById(`formMain${id}`).submit();
     }
+    function deleteImage() {
+        var path = document.getElementById("deletePath").value;
+        var myArray = document.getElementById("imagePath").value.split(",");
+        for (var i = 0; i < myArray.length; i++) {
+            if (myArray[i] === path) {
+                myArray.splice(i, 1);
+            }
+        }
+        document.getElementById("deletePath").value = myArray;
+        document.getElementById("imageToDelete").value = document.getElementById("mainpic").getAttribute("src");
+        document.getElementById("deleteImage").submit();
+    }
+
     function deleteImage() {
         var path = document.getElementById("deletePath").value;
         var myArray = document.getElementById("imagePath").value.split(",");

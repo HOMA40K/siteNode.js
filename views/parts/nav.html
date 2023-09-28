@@ -1,7 +1,7 @@
-<div  class="sticky top-0 z-[100]">
+<div class="sticky top-0 z-[100]">
     <div id="toast" class="toast toast-top toast-end hidden top-10 right-10 z-[101]">
-        <div class="alert alert-info">
-          <span>Скопировано</span>
+        <div class="alert alert-info bg-gray-400 text-stone-100">
+            <span>Скопировано</span>
         </div>
     </div>
     <div class="navbar bg-base-100 p-0 m-0">
@@ -88,10 +88,13 @@
             <div class="grid grid-cols-3">
                 <!-- if there is a button in form, it will close the modal -->
                 <div>
-                    <button class=""><img src="/siteimg/back.svg" alt=""></button>
+
                 </div>
                 <div class="w-full">
                     <img class="mx-auto" src="/siteimg/whitelogo.svg" alt="">
+                </div>
+                <div class="w-fit h-fit place-self-end my-auto">
+                    <button class=""><img  class="h-10 w-10 mx" src="/siteimg/x-solid.svg" alt=""></button>
                 </div>
             </div>
         </form>
@@ -103,7 +106,7 @@
                             <label class="label">
                                 <span class="label-text text-[#1d3a6d]">Номер телефона</span>
                             </label>
-                            <input required type="text" name="name" class="input input-bordered w-full max-w-md" />
+                            <input required id="phone-mask" type="tel" name="name" value="+7" placeholder="+7(999) 999-99-99" class="tel input input-bordered w-full max-w-md" />
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
@@ -172,12 +175,55 @@
 <div class="mx-auto form-control w-full max-w-md pt-8">
     <button class="btn">Отправить</button>
 </div> -->
-<div class="toast toast-top toast-end">
-    <div class="alert alert-info">
-      <span>New mail arrived.</span>
-    </div>
-</div>
 <script>
+    const input = document.querySelector(".tel");
+
+const prefixNumber = (str) => {
+  if (str === "7") {
+    return "7 (";
+  }
+  if (str === "8") {
+    return "8 (";
+  }
+  if (str === "9") {
+    return "7 (9";
+  }
+  return "7 (";
+};
+
+// ======================================
+input.addEventListener("input", (e) => {
+  const value = input.value.replace(/\D+/g, "");
+  const numberLength = 11;
+
+  let result;
+    result = "+";
+
+  //
+  for (let i = 0; i < value.length && i < numberLength; i++) {
+    switch (i) {
+      case 0:
+        result += prefixNumber(value[i]);
+        continue;
+      case 4:
+        result += ") ";
+        break;
+      case 7:
+        result += "-";
+        break;
+      case 9:
+        result += "-";
+        break;
+      default:
+        break;
+    }
+    result += value[i];
+  }
+  //
+  input.value = result;
+});
+
+
     async function copyText(id) {
         let text = document.getElementById(id).innerText;
         await navigator.clipboard.writeText(text);
@@ -186,10 +232,10 @@
     function showMyModal() {
         document.getElementById("orderModal").showModal();
     }
-    function showToast(){
-        document.getElementById("toast").classList.remove("hidden");
-        setTimeout(function(){ document.getElementById("toast").classList.add("hidden"); }, 4000);
+    function showToast() {
+        document.getElementById("toast").classList.add("hidden");
+        setTimeout(function () { document.getElementById("toast").classList.remove("hidden"); }, 100);
+        setTimeout(function () { document.getElementById("toast").classList.add("hidden"); }, 4000);
     }
-
 
 </script>

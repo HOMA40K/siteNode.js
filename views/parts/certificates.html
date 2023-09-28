@@ -1,15 +1,11 @@
-<div>
-    <div class="gallery flex justify-center items-center">
+<div class="mt-8">
+  {{ certGallery.gallery(cert.imagePaths) }}
+    <!-- <div class="gallery flex justify-center items-center">
+      {% for certPath in cert.imagePaths %}
         <div class="image-container relative">
-          <img src="/siteimg/cert3.png" alt="Image 1" class="image" />
+          <img src="{{certPath}}" alt="Image 1" class="image" />
         </div>
-        <div class="image-container relative">
-          <img src="/siteimg/cert2.png" alt="Image 2" class="image" />
-        </div>
-        <div class="image-container relative">
-          <img src="/siteimg/cert1.png" alt="Image 3" class="image" />
-        </div>
-      </div>
+      {% endfor %} -->
 </div>
     <!-- <div>
         <input type="radio" name="radio-1" class="radio" checked />
@@ -17,12 +13,5 @@
         <input type="radio" name="radio-1" class="radio" />
     </div> -->
 <script>
-    $(document).ready(function() {
-    $('.image-container').onclick(function() {
-    $('.image-container').removeClass('selected');
-    $(this).addClass('selected');
-    $('.image-container').not('.selected').addClass('hidden');
-    $('.selected').removeClass('hidden');
-  });
-});
+
 </script>
