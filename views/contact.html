@@ -26,11 +26,11 @@
                 </div>
                 <div class="flex">
                     <img class="w-8 h-8" src="/siteimg/phone-call-blue.svg" alt="Телефон:">
-                    <p class="h-full my-auto ml-2">{{ info.phoneNumber }}</p>
+                    <a class="h-full my-auto ml-2 cursor-pointer" id="telNav" onclick="copyText(this.id)">{{ info.phoneNumber }}</a>
                 </div>
                 <div class="flex">
                     <img class="w-8 h-8" src="/siteimg/mail-blue.svg" alt="Почта:">
-                    <p class="h-full my-auto ml-2">{{ info.email }}</p>
+                    <a class="h-full my-auto ml-2 cursor-pointer" id="mailNav" onclick="copyText(this.id)">{{ info.email }}</a>
                 </div>
                 <div class="flex">
                     <img class="w-8 h-8" src="/siteimg/Location.svg" alt="Адрес:">
@@ -41,22 +41,6 @@
         <div class="card w-full bg-base-100 shadow-xl mt-3">
             <div class="card-body text-[#1d3a6d]">
                 <h2 class="card-title">Реквизиты</h2>
-                <!-- <div class="flex">
-                    <img class="w-8 h-8" src="/siteimg/location.svg" alt="Адрес:">
-                    <p class="h-full my-auto ml-2">Южнопортовая улица 7с7</p>
-                </div>
-                <div class="flex">
-                    <div class="flex-none w-fit">
-                        <p>ИНН</p>
-                        <p>КПП</p>
-                        <p>ОГРН</p>
-                    </div>
-                    <div class="flex-1 ml-3">
-                        <p>7722464540</p>
-                        <p>772201001</p>
-                        <p>1187746699447</p>
-                    </div>                  
-                </div> -->
                 <div class="grid grid-cols-8 grid-rows-4">
                         <img class="w-8 h-8 col-span-2" src="/siteimg/Location.svg" alt="Адрес:">
                         <p class="col-span-6">Южнопортовая улица 7с7</p>

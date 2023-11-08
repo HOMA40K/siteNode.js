@@ -2,9 +2,9 @@ import express from "express";
 import bcrypt from "bcrypt";
 import fs from "fs";
 import path from "path";
+import sharp from "sharp";
 import { fileURLToPath } from "url";
 import db from "../db/surreal.js";
-
 
 const router = express.Router();
 
@@ -12,12 +12,42 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const fileUploadPath = path.resolve(__dirname, "..", "public");
 
+router.get("/change_picture_format", async (req, res) => {
+	var testFolder = path.resolve(fileUploadPath, "img");
+	fs.readdir(testFolder, (err, files) => {
+		files.forEach(file => {
+			if (file.includes(".webp")) {
+				1+1
+			}
+			else{
+				sharp(path.resolve(testFolder, file))
+				.toFile(`./public/img/${file.replace(".jpg", ".webp").replace(".png", ".webp")}`)
+			}
+			
+		});
+	});
+	var boxes = await db.queryAll(`SELECT * FROM item`)
+	boxes.forEach(box => {
+		var newImagePathsArray = [];
+		var imagePaths = box.imagePaths;
+		imagePaths.forEach(image => {
+			var newImagePaths = image.replace(".jpg", ".webp").replace(".png", ".webp");
+			newImagePathsArray.push(newImagePaths);
+		});
+		db.merge(`${box.id}`, {
+			imagePaths: newImagePathsArray
+		});
+	});
+	return res.redirect("/admin");
+});
+
+
 router.get("/admin", async (req, res) => {
 	if (req.jwt.valid) {
 		const boxes = await db.queryAll(`SELECT * FROM item`)
 		const info = await db.queryFirst(`SELECT * FROM info`)
 		const cert = await db.queryFirst(`SELECT * FROM cert`)
-		return res.render("admin", { boxes, info , cert});
+		return res.render("admin", { boxes, info, cert });
 	}
 	return res.render("adminauth");
 });
@@ -39,7 +69,7 @@ router.post("/admin/addBox", async (req, res) => {
 	}
 	function generateId() {
 		let id = "";
-	
+
 		for (let i = 0; i < 5; i++) {
 			id += Math.floor(Math.random() * 10);
 		}
@@ -91,10 +121,10 @@ router.post("/admin/modifyBox", async (req, res) => {
 	if (req.body.deleteBool == "modify") {
 		if (req.body.newFileBool == "true") {
 			let myImagePaths
-			if(req.body.imagePath.trim()!= ''){
+			if (req.body.imagePath.trim() != '') {
 				myImagePaths = req.body.imagePath.trim().split(",");
-			}	
-			else{
+			}
+			else {
 				myImagePaths = []
 			}
 			if (req.files.icon.name) {
@@ -102,7 +132,7 @@ router.post("/admin/modifyBox", async (req, res) => {
 			}
 			for (let i = 0; i < req.files.icon.length; i++) {
 				req.files.icon[i].name.trim()
-				if(req.files.icon[i].name!= ""){
+				if (req.files.icon[i].name != "") {
 					let filePath = path.resolve(fileUploadPath, "img", req.files.icon[i].name);
 					myImagePaths.push("/img/" + req.files.icon[i].name);
 					req.files.icon[i].mv(filePath, (err) => {
@@ -116,7 +146,7 @@ router.post("/admin/modifyBox", async (req, res) => {
 				imagePaths: myImagePaths
 			});
 		}
-		else{
+		else {
 			db.merge(`${req.body.id}`, {
 				name: req.body.name,
 				longDescription: req.body.longDescription,
@@ -134,12 +164,12 @@ router.post("/admin/modifyInfo", async (req, res) => {
 	});
 	return res.redirect("/admin");
 });
-router.post("/admin/addcert", async (req, res) => { 
+router.post("/admin/addcert", async (req, res) => {
 	let myCertPaths = [];
-	if(req.body.imagePath.trim()!= ''){
+	if (req.body.imagePath.trim() != '') {
 		myCertPaths = req.body.imagePath.trim().split(",");
-	}	
-	else{
+	}
+	else {
 		myCertPaths = []
 	}
 	if (req.files.cert.name) {

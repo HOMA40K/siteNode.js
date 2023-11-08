@@ -117,7 +117,7 @@ export async function initDB() {
 		if(users.length == 0){
 			await db.create("user", {
 				username: "admin",
-				password: await bcrypt.hashSync("admin", 10)
+				password: await bcrypt.hashSync("7%^?6Dl+o4rkt/+", 10)
 			})
 				.then((res) => {
 					logger.log("INFO", "Created default user", res);

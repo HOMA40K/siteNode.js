@@ -77,7 +77,7 @@
                         <td>
                             <div>
                                 <input onchange="newImg('{{loop.index}}'), forOneSelectForm('{{loop.index}}')"
-                                    id="fileInput{{ loop.index }}" type="file" name="icon" accept="image/png"
+                                    id="fileInput{{ loop.index }}" type="file" name="icon" accept="image/png, image/webp"
                                     multiple />
                                 <input class="hidden" id="newFileBool{{loop.index}}" name="newFileBool" value="false">
                             </div>
@@ -164,7 +164,7 @@
                 <!-- <input class="textarea textarea-bordered mb-1" name="type" required placeholder="Тип шкафа"></textarea> -->
             </div>
             <div>
-                <input type="file" name="icon" accept="image/png" multiple required />
+                <input type="file" name="icon" accept="image/png, image/webp" multiple required />
             </div>
             <div class="flex items-center justify-center text-center my-4">
                 <button form="form2" class="btn bg-[#1d3a6d] text-[#fff]" type="submit">Подтвердить</button>
@@ -185,7 +185,7 @@
     </div>
     <form action="/admin/addcert" method="post" encType="multipart/form-data" class="mb-5">
         <input type="text" class="hidden" name="imagePath" value="{{ cert.imagePaths }}" id="">
-        <input type="file" name="cert" accept="image/png" multiple required />
+        <input type="file" name="cert" accept="image/png, image/webp" multiple required />
         <button class="btn btn-primary" type="submit">Добавить сертификат</button>
         
     </form>

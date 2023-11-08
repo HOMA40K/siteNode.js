@@ -1,5 +1,5 @@
 {% macro gallery(imgPaths) %}
-<div class="m-6 mx-auto w-full xl:w-2/5">
+<div class="m-6 mx-auto w-full xl:w-2/5 max-h-[80hv]">
     <div class="aspect-square relative">
         <div id="images" class="images">
             <img id="productImg" onclick="zoomImage(this.id)"
@@ -57,6 +57,18 @@
                     <button class="btn "><img class="h-4 w-4" src="/siteimg/x-solid.svg"></button>
                 </div>
             </form>
+            <svg class="h-14 p-4 cursor-pointer left-0 top-1/2 -translate-y-1/2 absolute"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+                onclick="prevImageZoomed('productImages', 'productImg')"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                    d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+            <svg class="h-14 p-4 cursor-pointer right-0 top-1/2 -translate-y-1/2 absolute"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+                onclick="nextImageZoomed()"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                    d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+            </svg>
         </div>
         <div class="">
             <img id="mainpic" class=" w-full max-w-screen md:max-h-screen" src="">
@@ -77,24 +89,32 @@
     }
 </style> -->
 <script>
-    function nextImage(imgsDivId, imgId) {
-        let img = document.getElementById(imgsDivId);
-        let images = img.children;
-        let index = img.getAttribute("data-index");
-        if (parseInt(index) < images.length - 1) {
-            document.getElementById(imgId).src = img.children[parseInt(index) + 1].firstElementChild.src;
-            img.setAttribute("data-index", parseInt(index) + 1);
+    function nextImage(imgsDivId, imgId){
+            let img = document.getElementById(imgsDivId);
+            let images = img.children;
+            let index = img.getAttribute("data-index");
+            if(parseInt(index) < images.length - 1){
+                document.getElementById(imgId).src = img.children[parseInt(index) + 1].firstElementChild.src;
+                img.setAttribute("data-index", parseInt(index) + 1);
+            }
+            if(parseInt(index) == images.length - 1){
+                document.getElementById(imgId).src = img.children[0].firstElementChild.src;
+                img.setAttribute("data-index", 0);
+            }
         }
-    }
-    function prevImage(imgsDivId, imgId) {
-        let img = document.getElementById(imgsDivId);
-        let images = img.children;
-        let index = img.getAttribute("data-index");
-        if (parseInt(index) > 0) {
-            document.getElementById(imgId).src = img.children[parseInt(index) - 1].firstElementChild.src;
-            img.setAttribute("data-index", parseInt(index) - 1);
+        function prevImage(imgsDivId, imgId){
+            let img = document.getElementById(imgsDivId);
+            let images = img.children;
+            let index = img.getAttribute("data-index");
+            if(parseInt(index) > 0){
+                document.getElementById(imgId).src = img.children[parseInt(index) - 1].firstElementChild.src;
+                img.setAttribute("data-index", parseInt(index) - 1);
+            }
+            if(parseInt(index) == 0){
+                document.getElementById(imgId).src = img.children[images.length - 1].firstElementChild.src;
+                img.setAttribute("data-index", images.length - 1);
+            }
         }
-    }
     function scrollLeftt(elemId) {
         let elem = document.getElementById(elemId);
         elem.scroll({ left: elem.scrollLeft - elem.offsetWidth, behavior: 'smooth' });
@@ -102,6 +122,10 @@
     function scrollRight(elemId) {
         let elem = document.getElementById(elemId);
         elem.scroll({ left: elem.scrollLeft + elem.offsetWidth, behavior: 'smooth' });
+    }
+    function changeProductImg(imgId, elem) {
+        document.getElementById(imgId).src = elem.firstElementChild.src;
+        document.getElementById("productImages").setAttribute("data-index", elem.getAttribute("data-index"));
     }
 
     function zoomImage(imgId) {
@@ -111,8 +135,33 @@
         let modalImg = document.getElementById("mainpic");
         modalImg.src = img.src;
         modal.showModal();
+    }
+    function nextImageZoomed() {
+        let img = document.getElementById("mainpic");
+        let images = document.getElementById("productImages").children;
+        let index = document.getElementById("productImages").getAttribute("data-index");
+        if(parseInt(index) < images.length - 1){
+            img.src = images[parseInt(index) + 1].firstElementChild.src;
+            document.getElementById("productImages").setAttribute("data-index", parseInt(index) + 1);
+        }
+        if(parseInt(index) == images.length - 1){
+            img.src = images[0].firstElementChild.src;
+            document.getElementById("productImages").setAttribute("data-index", 0);
+        }
 
-
+    }
+    function prevImageZoomed(){
+        let img = document.getElementById("mainpic");
+        let images = document.getElementById("productImages").children;
+        let index = document.getElementById("productImages").getAttribute("data-index");
+        if(parseInt(index) > 0){
+            img.src = images[parseInt(index) - 1].firstElementChild.src;
+            document.getElementById("productImages").setAttribute("data-index", parseInt(index) - 1);
+        }
+        if(parseInt(index) == 0){
+            img.src = images[images.length - 1].firstElementChild.src;
+            document.getElementById("productImages").setAttribute("data-index", images.length - 1);
+        }
     }
 </script>
 {% endmacro %}
