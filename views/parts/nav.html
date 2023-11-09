@@ -109,7 +109,8 @@
                             <label class="label">
                                 <span class="label-text text-[#1d3a6d]">Номер телефона</span>
                             </label>
-                            <input required id="phone-mask" type="tel" name="name" value="+7" placeholder="+7(999) 999-99-99" class="tel input input-bordered w-full max-w-md" />
+                            <input required id="phone-mask" type="tel" name="name" value="+7"
+                                placeholder="+7(999) 999-99-99" class="tel input input-bordered w-full max-w-md" />
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
@@ -128,13 +129,21 @@
                                 <span class="label-text text-">Файл</span>
                             </label>
                             <div class="mx-auto form-control w-full max-w-md">
-                                <input required multiple type="file" name="file"
+                                <input id="fileInput" required multiple type="file" name="file"
                                     class="file-input file-input-bordered w-full max-w-md" />
+                                <div class="mx-auto form-control w-full max-w-md">
+                                    <label class="label">
+                                        <span  class="label-text text-[#1d3a6d]">Список файлов</span>
+                                    </label>
+                                    <input id="fileNames" type="text" class="input input-bordered w-full max-w-md"
+                                        disabled />
+                                </div>
                                 <div class="text-[#1d3a6d] my-4">
                                     <input class="mr-2" type="checkbox" id="" required>Политика конфиденциальности
                                 </div>
                             </div>
                         </div>
+
                         <div class="mx-auto w-fit mt-8"><button type="submit"
                                 class="btn mx-auto bg-[#1d3a6d] text-white">Отправить</button>
                         </div>
@@ -147,52 +156,61 @@
 
 </dialog>
 <script>
+    var names = document.getElementById('fileNames')
+    document.getElementById('fileInput').onchange = function () {
+        names.value = '';
+        for (var i = 0; i < this.files.length; i++) {
+            names.value += this.files[i].name + ', ';
+        }
+        names.value = names.value.substring(0, names.value.length - 2);
+        
+    };
     const input = document.querySelector(".tel");
 
-const prefixNumber = (str) => {
-  if (str === "7") {
-    return "7 (";
-  }
-  if (str === "8") {
-    return "8 (";
-  }
-  if (str === "9") {
-    return "7 (9";
-  }
-  return "7 (";
-};
+    const prefixNumber = (str) => {
+        if (str === "7") {
+            return "7 (";
+        }
+        if (str === "8") {
+            return "8 (";
+        }
+        if (str === "9") {
+            return "7 (9";
+        }
+        return "7 (";
+    };
 
-// ======================================
-input.addEventListener("input", (e) => {
-  const value = input.value.replace(/\D+/g, "");
-  const numberLength = 11;
+    // ======================================
+    input.addEventListener("input", (e) => {
+        const value = input.value.replace(/\D+/g, "");
+        const numberLength = 11;
 
-  let result;
-    result = "+";
+        let result;
+        result = "+";
 
-  //
-  for (let i = 0; i < value.length && i < numberLength; i++) {
-    switch (i) {
-      case 0:
-        result += prefixNumber(value[i]);
-        continue;
-      case 4:
-        result += ") ";
-        break;
-      case 7:
-        result += "-";
-        break;
-      case 9:
-        result += "-";
-        break;
-      default:
-        break;
-    }
-    result += value[i];
-  }
-  //
-  input.value = result;
-});
+        //
+        for (let i = 0; i < value.length && i < numberLength; i++) {
+            switch (i) {
+                case 0:
+                    result += prefixNumber(value[i]);
+                    continue;
+                case 4:
+                    result += ") ";
+                    break;
+                case 7:
+                    result += "-";
+                    break;
+                case 9:
+                    result += "-";
+                    break;
+                default:
+                    break;
+            }
+            result += value[i];
+        }
+        //
+        input.value = result;
+    });
 
 
     async function copyText(id) {
