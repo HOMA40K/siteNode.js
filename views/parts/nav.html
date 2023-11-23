@@ -120,25 +120,32 @@
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
-                                <span  class="label-text text-[#1d3a6d] ">Примечание</span>
+                                <span class="label-text text-[#1d3a6d] ">Примечание</span>
                             </label>
-                            <textarea maxlength="120" required type="text" name="note" class="input input-bordered w-full max-w-md h-20" > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penat</textarea>
+                            <textarea maxlength="120" required type="text" name="note"
+                                class="input input-bordered w-full max-w-md h-20"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penat</textarea>
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
                                 <span class="label-text text-">Файл</span>
                             </label>
                             <div class="mx-auto form-control w-full max-w-md">
-                                
-                                <input id="fileInput" required multiple type="file" name="file"
+
+                                <input id="fileInput" onchange="showNames()" required multiple type="file" name="file"
                                     class="file-input file-input-bordered w-full max-w-md" />
                                 <div class="mx-auto form-control w-full max-w-md">
                                     <label class="label">
                                         <span  class="label-text text-[#1d3a6d]">Список файлов</span>
                                     </label>
-                                    <input id="fileNames" type="text" class="input input-bordered w-full max-w-md"
-                                        disabled />
                                 </div>
+                                    <!-- <header>File Uploader JavaScript</header> -->
+                                        <!-- <input class="file-input" type="file" name="file" hidden> -->
+                                        <!-- <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Browse File to Upload</p> -->
+                                    <section id="fileNames" class="progress-area">
+                                        
+                                    </section>
+
                                 <div class="text-[#1d3a6d] my-4">
                                     <input class="mr-2" type="checkbox" id="" required>Я согласен(на) на <a
                                         class="underline" href="polzovatelskoe_soglasenie" target="_blank">обработку
@@ -156,13 +163,21 @@
         </div>
 
     </div>
-
+    
 </dialog>
 <script>
 
 
-
-
+// Write me a code that will put all file names in section with class="progress-area" when user selects multiple files.
+    function showNames() {
+        var input = document.getElementById('fileInput');
+        var output = document.getElementById('fileNames');
+        var children = "";
+        for (var i = 0; i < input.files.length; ++i) {
+            children += '<div class="text-[#1d3a6d] my-4 flex"><img class="h-4 w-4 mr-2 fill-[#000]" src="/siteimg/file.svg" alt="">' + input.files.item(i).name + '</div>';
+        }
+        output.innerHTML = children;
+    }
 
     function checkPaste() {
         var phoneNumber = document.getElementById('phone-mask').value;
@@ -171,15 +186,15 @@
         }
 
     }
-    var names = document.getElementById('fileNames')
-    document.getElementById('fileInput').onchange = function () {
-        names.value = '';
-        for (var i = 0; i < this.files.length; i++) {
-            names.value += this.files[i].name + ', ';
-        }
-        names.value = names.value.substring(0, names.value.length - 2);
+    var names = document.getElementById('fileNames');
+    // document.getElementById('fileInput').onchange = function () {
+    //     names.value = '';
+    //     for (var i = 0; i < this.files.length; i++) {
+    //         names.value += this.files[i].name + ', ';
+    //     }
+    //     names.value = names.value.substring(0, names.value.length - 2);
 
-    };
+    // };
     const input = document.querySelector(".tel");
 
     const prefixNumber = (str) => {
