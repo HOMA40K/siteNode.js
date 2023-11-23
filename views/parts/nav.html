@@ -109,7 +109,7 @@
                             <label class="label">
                                 <span class="label-text text-[#1d3a6d]">Номер телефона</span>
                             </label>
-                            <input required id="phone-mask" type="tel" name="name" value="+7"
+                            <input required id="phone-mask" onpaste="checkPaste()" type="tel" name="name" value="+7"
                                 placeholder="+7(999) 999-99-99" class="tel input input-bordered w-full max-w-md" />
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
@@ -120,15 +120,16 @@
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
-                                <span class="label-text text-[#1d3a6d]">Примечание</span>
+                                <span  class="label-text text-[#1d3a6d] ">Примечание</span>
                             </label>
-                            <input required type="text" name="note" class="input input-bordered w-full max-w-md" />
+                            <textarea maxlength="120" required type="text" name="note" class="input input-bordered w-full max-w-md h-20" > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penat</textarea>
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
                                 <span class="label-text text-">Файл</span>
                             </label>
                             <div class="mx-auto form-control w-full max-w-md">
+                                
                                 <input id="fileInput" required multiple type="file" name="file"
                                     class="file-input file-input-bordered w-full max-w-md" />
                                 <div class="mx-auto form-control w-full max-w-md">
@@ -139,7 +140,9 @@
                                         disabled />
                                 </div>
                                 <div class="text-[#1d3a6d] my-4">
-                                    <input class="mr-2" type="checkbox" id="" required>Политика конфиденциальности
+                                    <input class="mr-2" type="checkbox" id="" required>Я согласен(на) на <a
+                                        class="underline" href="polzovatelskoe_soglasenie" target="_blank">обработку
+                                        персональных данных</a>
                                 </div>
                             </div>
                         </div>
@@ -156,6 +159,18 @@
 
 </dialog>
 <script>
+
+
+
+
+
+    function checkPaste() {
+        var phoneNumber = document.getElementById('phone-mask').value;
+        if (phoneNumber[1] == 8) {
+
+        }
+
+    }
     var names = document.getElementById('fileNames')
     document.getElementById('fileInput').onchange = function () {
         names.value = '';
@@ -163,7 +178,7 @@
             names.value += this.files[i].name + ', ';
         }
         names.value = names.value.substring(0, names.value.length - 2);
-        
+
     };
     const input = document.querySelector(".tel");
 
@@ -172,7 +187,7 @@
             return "7 (";
         }
         if (str === "8") {
-            return "8 (";
+            return "7 (";
         }
         if (str === "9") {
             return "7 (9";

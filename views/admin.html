@@ -1,237 +1,267 @@
 {% extends "base.html" %}
 
 {%block content%}
-<table class="table table-xs  table-pin-cols">
-    <thead>
-        <tr>
-            <th></th>
+<div class="">
+    <table class="table table-xs  table-pin-cols ">
+        <thead>
+            <tr>
+                <th class="bg-inherit"></th>
+                <td>Номер</td>
+                <td>Почта</td>
+                <th class="bg-inherit"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <form id="info" action="/admin/modifyInfo" method="post">
+                <th class="bg-inherit"></th>
+                <td><input onfocusout="sendInfo()" name="phoneNumber" value="{{ info.phoneNumber }}"
+                        class="textarea textarea-bordered" placeholder=""></td>
+                <td><input onfocusout="sendInfo()" name="email" value="{{ info.email }}"
+                        class="textarea textarea-bordered" placeholder=""></td>
+                <th class="bg-inherit"></th>
+            </form>
+        </tbody>
+        <tfoot>
+            <tr></tr>
+            <th class="bg-inherit"></th>
             <td>Номер</td>
             <td>Почта</td>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <form id="info" action="/admin/modifyInfo" method="post">
-            <th></th>
-            <td><input onfocusout="sendInfo()" name="phoneNumber" value="{{ info.phoneNumber }}"
-                    class="textarea textarea-bordered" placeholder=""></td>
-            <td><input onfocusout="sendInfo()" name="email" value="{{ info.email }}" class="textarea textarea-bordered"
-                    placeholder=""></td>
-            <th></th>
-        </form>
-    </tbody>
-    <tfoot>
-        <tr></tr>
-        <th></th>
-        <td>Номер</td>
-        <td>Почта</td>
-        <th></th>
-        <tr></tr>
-    </tfoot>
-</table>
-<div class="overflow-x-auto">
+            <th class="bg-inherit"></th>
+            <tr></tr>
+        </tfoot>
+    </table>
     <div class="overflow-x-auto">
-        <table class="table table-xs  table-pin-cols">
-            <thead>
-                <tr>
-                    <th></th>
-                    <td>Название</td>
-                    <td>Текст краткий</td>
-                    <td>Текст подробный</td>
-                    <td>Тип шкафа</td>
-                    <td>Добавить картинку</td>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                {% for box in boxes %}
-                <form id="formMain{{ loop.index }}" action="/admin/modifyBox" encType="multipart/form-data"
-                    method="post">
+        <div class="overflow-x-auto">
+            <table class="table table-xs  table-pin-cols">
+                <thead>
                     <tr>
-                        <th class="thid">{{ loop.index }}</th>
-                        <td><input onfocusout="forOneSelectForm('{{loop.index}}')" name="name"
-                                class="textarea textarea-bordered" placeholder="" value="{{ box.name }}">
-                        </td>
-                        <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="shortDescription"
-                                class="textarea textarea-bordered" placeholder="">{{ box.shortDescription }}</textarea>
-                        </td>
-                        <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="longDescription"
-                                class="textarea textarea-bordered" placeholder="">{{ box.longDescription }}</textarea>
-                        </td>
-                        <td><select onfocusout="forOneSelectForm('{{loop.index}}')" value="{{ box.type }}" name="type"
-                                class="select w-full max-w-xs">
-                                <option disabled selected>Выберете тип</option>
-                                <option {{ "selected" if box.type=="Взрывозвщищеное оборудование" }}>Взрывозвщищеное
-                                    оборудование</option>
-                                <option {{ "selected" if box.type=="Пожарные щиты в соответсвии с 043 регламентом" }}>
-                                    Пожарные щиты в соответсвии с 043 регламентом</option>
-                                <option {{ "selected" if box.type=="Шкафы Электрообогрева" }}>Шкафы Электрообогрева
-                                </option>
-                                <option {{ "selected" if box.type=="Шкафы Автоматизации" }}>Шкафы Автоматизации</option>
-                                <option {{ "selected" if box.type=="19 “ стойки" }}>19 “ стойки</option>
-                                <option {{ "selected" if box.type=="Распределительные щиты" }}>Распределительные щиты
-                                </option>
-                            </select>
-                            <!-- <input onfocusout="forOneSelectForm('{{loop.index}}')" name="type" class="textarea textarea-bordered" placeholder="" value="{{ box.type }}"> -->
-                        </td>
-                        <td>
-                            <div>
-                                <input onchange="newImg('{{loop.index}}'), forOneSelectForm('{{loop.index}}')"
-                                    id="fileInput{{ loop.index }}" type="file" name="icon" accept="image/png, image/webp"
-                                    multiple />
-                                <input class="hidden" id="newFileBool{{loop.index}}" name="newFileBool" value="false">
-                            </div>
-                        </td>
-                        <td class="">
-                            {% if box.imagePaths | length > 0 %}
-                            <img id="img{{ loop.index }}" class="h-20 w-20 cursor-pointer"
-                                onclick="prepareChangeProductImg('{{ box.imagePaths }} ','{{ box.id }}')"
-                                src="{{ box.imagePaths[0] }}" alt="">
-                            {% endif %}
-                        </td>
-                        <td>
-                            <button type="button" id="deleteButton" onclick="deleteField('{{ loop.index }}')">
-                                <input id="deleteBool{{loop.index}}" name="deleteBool" class="hidden" value="">
-                                <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="1em"
-                                    viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome -
+                        <th class="bg-inherit"></th>
+                        <td>Название</td>
+                        <td>Текст краткий</td>
+                        <td>Текст подробный</td>
+                        <td>Тип шкафа</td>
+                        <td>Добавить картинку</td>
+                        <th class="bg-inherit"></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    {% for box in boxes %}
+                    <form id="formMain{{ loop.index }}" action="/admin/modifyBox" encType="multipart/form-data"
+                        method="post">
+                        <tr>
+                            <th class="thid bg-inherit">{{ loop.index }}</th>
+                            <td><input onfocusout="forOneSelectForm('{{loop.index}}')" name="name"
+                                    class="textarea textarea-bordered w-24" placeholder="" value="{{ box.name }}">
+                            </td>
+                            <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="shortDescription"
+                                    class="textarea textarea-bordered w-full"
+                                    placeholder="">{{ box.shortDescription }}</textarea>
+                            </td>
+                            <td><textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="longDescription"
+                                    class="textarea textarea-bordered w-full"
+                                    placeholder="">{{ box.longDescription }}</textarea>
+                            </td>
+                            <td><select onfocusout="forOneSelectForm('{{loop.index}}')" value="{{ box.type }}"
+                                    name="type" class="select max-w-xs w-32">
+                                    <option disabled selected>Выберете тип</option>
+                                    <option {{ "selected" if box.type=="Взрывозвщищеное оборудование" }}>Взрывозвщищеное
+                                        оборудование</option>
+                                    <option {{ "selected" if box.type=="Пожарные щиты в соответсвии с 043 регламентом"
+                                        }}>
+                                        Пожарные щиты в соответсвии с 043 регламентом</option>
+                                    <option {{ "selected" if box.type=="Шкафы Электрообогрева" }}>Шкафы Электрообогрева
+                                    </option>
+                                    <option {{ "selected" if box.type=="Шкафы Автоматизации" }}>Шкафы Автоматизации
+                                    </option>
+                                    <option {{ "selected" if box.type=="19 “ стойки" }}>19 “ стойки</option>
+                                    <option {{ "selected" if box.type=="Распределительные щиты" }}>Распределительные
+                                        щиты
+                                    </option>
+                                </select>
+                                <!-- <input onfocusout="forOneSelectForm('{{loop.index}}')" name="type" class="textarea textarea-bordered" placeholder="" value="{{ box.type }}"> -->
+                            </td>
+                            <td>
+                                <div>
+                                    <input onchange="newImg('{{loop.index}}'), forOneSelectForm('{{loop.index}}')"
+                                        id="fileInput{{ loop.index }}" type="file" name="icon"
+                                        accept="image/png, image/webp" multiple />
+                                    <input class="hidden" id="newFileBool{{loop.index}}" name="newFileBool"
+                                        value="false">
+                                </div>
+                            </td>
+                            <td class="">
+                                {% if box.imagePaths | length > 0 %}
+                                <img id="img{{ loop.index }}" class="h-20 w-20 cursor-pointer"
+                                    onclick="prepareChangeProductImg('{{ box.imagePaths }} ','{{ box.id }}')"
+                                    src="{{ box.imagePaths[0] }}" alt="">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button type="button" id="deleteButton" onclick="deleteField('{{ loop.index }}')">
+                                    <input id="deleteBool{{loop.index}}" name="deleteBool" class="hidden" value="">
+                                    <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                        viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome -
                                     https://fontawesome.com License - https://fontawesome.com/license (Commercial
                                     License) Copyright 2023 Fonticons, Inc. -->
-                                    <path
-                                        d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-                                </svg>
-                            </button>
-                            <input name="id" class="hidden" value="{{ box.id }}">
-                        </td>
-                        <td>
-                            <input id="imagePath" name="imagePath" value="{{ box.imagePaths }}" type="text"
-                                class="hidden">
-                        </td>
-                        <th>{{ loop.index }}</th>
-                </form>
-                </tr>
-                {% endfor %}
+                                        <path
+                                            d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
+                                    </svg>
+                                </button>
+                                <input name="id" class="hidden" value="{{ box.id }}">
+                            </td>
+                            <td>
+                                <input id="imagePath" name="imagePath" value="{{ box.imagePaths }}" type="text"
+                                    class="hidden">
+                            </td>
+                            <th class="bg-inherit">{{ loop.index }}</th>
+                    </form>
+                    </tr>
+                    {% endfor %}
 
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <td>Название</td>
-                    <td>Текст краткий</td>
-                    <td>Текст подробный</td>
-                    <td>Тип шкафа</td>
-                    <td>Добвить картинку</td>
-                    <td>Просмотр картинок</td>
-                    <th></th>
-                </tr>
-            </tfoot>
-        </table>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="bg-inherit"></th>
+                        <td>Название</td>
+                        <td>Текст краткий</td>
+                        <td>Текст подробный</td>
+                        <td>Тип шкафа</td>
+                        <td>Добвить картинку</td>
+                        <td>Просмотр картинок</td>
+                        <th class="bg-inherit"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
-</div>
 
-<label class="btn bg-[#1d3a6d] text-[#fff] m-5" for="server-modal">Добавить сервер</label>
-<input type="checkbox" id="server-modal" class="modal-toggle" />
+    <label class="btn bg-[#1d3a6d] text-[#fff] m-5" for="server-modal">Добавить сервер</label>
+    <input type="checkbox" id="server-modal" class="modal-toggle" />
 
-<div class="modal" id="server-modal">
-    <form id="form2" action="/admin/addBox" method="POST" encType="multipart/form-data">
-        <div class="w-full max-w-md p-8 bg-bg rounded-2xl relative modal-box">
-            <label for="server-modal" class=" absolute right-3 top-3 cursor-pointer text-xl">✕</label>
-            <div>
-                <h2 class="text-center text-3xl font-bold tracking-tight ">Добавить сервер</h2>
-            </div>
-            <div>
-                <input class="textarea textarea-bordered my-1" name="name" required placeholder="Нвзвание"></textarea>
-            </div>
-            <div>
-                <textarea class="textarea textarea-bordered" name="shortDescription" required
-                    placeholder="Текст краткий"></textarea>
-            </div>
-            <div>
-                <textarea class="textarea textarea-bordered" name="longDescription"
-                    placeholder="Текст подробный"></textarea>
-            </div>
-            <div>
-                <select id="select{{ loop.index }}" onload="setValue('{{loop.index}}','{{ box.type }}')"
-                    onfocusout="forOneSelectForm('{{loop.index}}')" required value="{{ box.type }}" name="type"
-                    class="select w-full max-w-xs">
-                    <option disabled>Выберете тип</option>
-                    <option>Взрывозвщищеное оборудование</option>
-                    <option>Пожарные щиты в соответсвии с 043 регламентом</option>
-                    <option>Шкафы Электрообогрева</option>
-                    <option>Шкафы Автоматизации</option>
-                    <option>19 “ стойки</option>
-                    <option>Распределительные щиты</option>
-                </select>
-                <!-- <input class="textarea textarea-bordered mb-1" name="type" required placeholder="Тип шкафа"></textarea> -->
-            </div>
-            <div>
-                <input type="file" name="icon" accept="image/png, image/webp" multiple required />
-            </div>
-            <div class="flex items-center justify-center text-center my-4">
-                <button form="form2" class="btn bg-[#1d3a6d] text-[#fff]" type="submit">Подтвердить</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div id="testid">{{ cert.imagePaths }}</div>
-
-<div>
-    <h1 class="text-3xl">Сертификаты</h1>
-    <div class="w-96 h-96">
-        {% if cert.imagePaths | length > 0 %}
-        <img id="img{{ loop.index }}" class="h-full cursor-pointer"
-            onclick="prepareChangeProductImg('{{ cert.imagePaths }} ','{{ cert.id }}')" src="{{ cert.imagePaths[0] }}" alt="">
-        {% endif %}
-    </div>
-    <form action="/admin/addcert" method="post" encType="multipart/form-data" class="mb-5">
-        <input type="text" class="hidden" name="imagePath" value="{{ cert.imagePaths }}" id="">
-        <input type="file" name="cert" accept="image/png, image/webp" multiple required />
-        <button class="btn btn-primary" type="submit">Добавить сертификат</button>
-        
-    </form>
-    
-</div>
-
-<dialog id="my_modal_4" class="modal">
-    <div class="modal-box w-fit max-w-5xl">
-
-        <img src="" alt="">
-        <div class="modal-action">
-            <div class="w-96 h-52">
-                <img id="mainpic" class="h-full" src="">
-            </div>
-            <form action="/admin/deleteImage" method="post" id="deleteImage">
-                <div class="w-16 h-full carousel carousel-vertical rounded-box overflow-x-hidden overflow-y-auto">
-
-                    <input id="deletePath" class="hidden" name="deletePath" value="">
-                    <input id="deletePathId" class="hidden" name="deletePathId" value="">
-                    <input id="imageToDelete" class="hidden" name="imageToDelete" value="">
-                    <div id="modalDivs">
-                        <div class="carousel-item aspect-square cursor-pointer"
-                            onclick="changeProductImg('mainpic', this)">
-                            <img class="delImg" id="pic1" src="" />
-                        </div>
-                        <div class="carousel-item aspect-square cursor-pointer"
-                            onclick="changeProductImg('mainpic', this)">
-                            <img class="delImg" id="pic2" src="" />
-                        </div>
-                    </div>
-            </form>
-        </div>
-        <div>
-            <button type="button" onclick="deleteImage()" class="btn btn-primary m-4">Удалить выбранную
-                картинку</button>
-        </div>
-
-        <form method="dialog" class="">
-            <div class="modal-action">
-                <button class="btn">Close</button>
+    <div class="modal" id="server-modal">
+        <form id="form2" action="/admin/addBox" method="POST" encType="multipart/form-data">
+            <div class="w-full max-w-md p-8 bg-bg rounded-2xl relative modal-box">
+                <label for="server-modal" class=" absolute right-3 top-3 cursor-pointer text-xl">✕</label>
+                <div>
+                    <h2 class="text-center text-3xl font-bold tracking-tight ">Добавить сервер</h2>
+                </div>
+                <div>
+                    <input class="textarea textarea-bordered my-1" name="name" required
+                        placeholder="Нвзвание"></textarea>
+                </div>
+                <div>
+                    <textarea class="textarea textarea-bordered w-full" name="shortDescription" required
+                        placeholder="Текст краткий"></textarea>
+                </div>
+                <div>
+                    <textarea class="textarea textarea-bordered w-full" name="longDescription"
+                        placeholder="Текст подробный"></textarea>
+                </div>
+                <div>
+                    <select id="select{{ loop.index }}" onload="setValue('{{loop.index}}','{{ box.type }}')"
+                        onfocusout="forOneSelectForm('{{loop.index}}')" required value="{{ box.type }}" name="type"
+                        class="select w-full max-w-xs">
+                        <option disabled>Выберете тип</option>
+                        <option>Взрывозвщищеное оборудование</option>
+                        <option>Пожарные щиты в соответсвии с 043 регламентом</option>
+                        <option>Шкафы Электрообогрева</option>
+                        <option>Шкафы Автоматизации</option>
+                        <option>19 “ стойки</option>
+                        <option>Распределительные щиты</option>
+                    </select>
+                    <!-- <input class="textarea textarea-bordered mb-1" name="type" required placeholder="Тип шкафа"></textarea> -->
+                </div>
+                <div>
+                    <input type="file" name="icon" accept="image/png, image/webp" multiple required />
+                </div>
+                <div class="flex items-center justify-center text-center my-4">
+                    <button form="form2" class="btn bg-[#1d3a6d] text-[#fff]" type="submit">Подтвердить</button>
+                </div>
             </div>
         </form>
     </div>
-</dialog>
+
+    <div>
+        <h1 class="text-3xl">Сертификаты</h1>
+        <div class="w-96 h-96">
+            {% if cert.imagePaths | length > 0 %}
+            <img id="img{{ loop.index }}" class="h-full cursor-pointer"
+                onclick="prepareChangeProductImg('{{ cert.imagePaths }} ','{{ cert.id }}')"
+                src="{{ cert.imagePaths[0] }}" alt="">
+            {% endif %}
+        </div>
+        <form action="/admin/addcert" method="post" encType="multipart/form-data" class="mb-5">
+            <input type="text" class="hidden" name="imagePath" value="{{ cert.imagePaths }}" id="">
+            <input type="file" name="cert" accept="image/png, image/webp" multiple required />
+            <button class="btn btn-primary" type="submit">Добавить сертификат</button>
+
+        </form>
+
+    </div>
+
+    <dialog id="my_modal_5" class="modal bg-gray-800">
+        <div class="h-full w-full flex justify-center">
+            <div>
+                <form method="dialog" class="absolute top-5 right-5">
+                    <div class="modal-action">
+                        <button class="btn "><img class="h-4 w-4" src="/siteimg/x-solid.svg"></button>
+                    </div>
+                </form>
+            </div>
+            <div class="">
+                <img id="mainpic2" class=" w-full max-w-screen md:max-h-screen" src="">
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="my_modal_4" class="modal">
+        <div class="modal-box w-fit max-w-5xl">
+            <img src="" alt="">
+            <div class="modal-action">
+                <div class="w-96 h-52">
+                    <img id="mainpic" class="h-full cursor-zoom-in" onclick="zoomImage(this.id)" src="">
+                </div>
+                <form action="/admin/deleteImage" method="post" id="deleteImage">
+                    <div class="w-16 h-full carousel carousel-vertical rounded-box overflow-x-hidden overflow-y-auto">
+
+                        <input id="deletePath" class="hidden" name="deletePath" value="">
+                        <input id="deletePathId" class="hidden" name="deletePathId" value="">
+                        <input id="imageToDelete" class="hidden" name="imageToDelete" value="">
+                        <div id="modalDivs">
+                            <div class="carousel-item aspect-square cursor-pointer"
+                                onclick="changeProductImg('mainpic', this)">
+                                <img class="delImg" id="pic1" src="" />
+                            </div>
+                            <div class="carousel-item aspect-square cursor-pointer"
+                                onclick="changeProductImg('mainpic', this)">
+                                <img class="delImg" id="pic2" src="" />
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <div>
+                <button type="button" onclick="deleteImage()" class="btn btn-primary m-4">Удалить выбранную
+                    картинку</button>
+            </div>
+
+            <form method="dialog" class="">
+                <div class="modal-action">
+                    <button class="btn">Close</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</div>
 
 <script>
+    function zoomImage(imgId) {
+        //WRITE me a code that creates zooming effect on image click
+        let img = document.getElementById(imgId);
+        let modal = document.getElementById("my_modal_5");
+        let modalImg = document.getElementById("mainpic2");
+        modalImg.src = img.src;
+        modal.showModal();
+    }
     function sendInfo() {
         document.getElementById("info").submit();
     }

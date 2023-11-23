@@ -72,6 +72,10 @@ app.get('/contact', (req, res)=>{
     res.render('contact')
 
 })
+app.get('/polzovatelskoe_soglasenie', (req, res)=>{
+	res.render('parts/polzovatelskoe_soglasenie')
+
+})
 
 app.get('/products', (req, res)=>{
     res.render('products')
