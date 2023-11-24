@@ -9,6 +9,8 @@ const logger = new Logger();
 let db_url = process.env.DATABASE_URL;
 let db_user = process.env.DATABASE_USER;
 let db_pass = process.env.DATABASE_PASSWORD;
+let admin_name = process.env.ADMIN_NAME;
+let admin_pass = process.env.ADMIN_PASSWORD;
 
 const db = new Surreal(db_url);
 
@@ -116,8 +118,8 @@ export async function initDB() {
 		const users = await db.select("user");
 		if(users.length == 0){
 			await db.create("user", {
-				username: "admin",
-				password: await bcrypt.hashSync("7%^?6Dl+o4rkt/+", 10)
+				username: admin_name,
+				password: await bcrypt.hashSync(admin_pass, 10)
 			})
 				.then((res) => {
 					logger.log("INFO", "Created default user", res);

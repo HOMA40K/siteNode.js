@@ -120,10 +120,11 @@
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
-                                <span class="label-text text-[#1d3a6d] ">Примечание</span>
+                                <span class="label-text text-[#1d3a6d]">Примечание</span>
+                                <span id="counter" onchange="" class="label-text-alt text-[#1d3a6d]">0/130 символов</span>
                             </label>
-                            <textarea maxlength="120" required type="text" name="note"
-                                class="input input-bordered w-full max-w-md h-20"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penat</textarea>
+                            <textarea maxlength="130" oninput="countChars(this)" required type="text" name="note"
+                                class="resize-none input input-bordered w-full max-w-md h-20"> </textarea>
                         </div>
                         <div class="mx-auto form-control w-full max-w-md">
                             <label class="label">
@@ -134,9 +135,7 @@
                                 <input id="fileInput" onchange="showNames()" required multiple type="file" name="file"
                                     class="file-input file-input-bordered w-full max-w-md" />
                                 <div class="mx-auto form-control w-full max-w-md">
-                                    <label class="label">
-                                        <span  class="label-text text-[#1d3a6d]">Список файлов</span>
-                                    </label>
+                                    
                                 </div>
                                     <!-- <header>File Uploader JavaScript</header> -->
                                         <!-- <input class="file-input" type="file" name="file" hidden> -->
@@ -168,7 +167,20 @@
 <script>
 
 
-// Write me a code that will put all file names in section with class="progress-area" when user selects multiple files.
+    function countChars(obj) {
+        console.log(obj.value.length);
+        var strLength = obj.value.length;
+
+        document.getElementById("counter").innerHTML = strLength + '/130 символов';
+
+        // if (charRemain < 0) {
+        //     document.getElementById("counter").innerHTML = '<span style="color: red;">' + charRemain + '/130 символов</span>';
+        // } else {
+        //     document.getElementById("counter").innerHTML = charRemain + '/130 символов';
+        // }
+    }
+
+
     function showNames() {
         var input = document.getElementById('fileInput');
         var output = document.getElementById('fileNames');
