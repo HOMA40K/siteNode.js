@@ -29,6 +29,7 @@
     "nodemailer": "^6.9.4",
     "nodemon": "^2.0.22",
     "nunjucks": "^3.2.4",
+    "nunjucks-filter": "^2.0.1",
     "pm2": "^5.3.0",
     "sharp": "^0.32.6",
     "surreal": "^0.3.7",

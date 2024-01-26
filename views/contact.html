@@ -29,6 +29,10 @@
                     <a class="h-full my-auto ml-2 cursor-pointer" id="telNav" onclick="copyText(this.id)">{{ info.phoneNumber }}</a>
                 </div>
                 <div class="flex">
+                    <img class="w-8 h-8" src="/siteimg/phone-call-blue.svg" alt="Телефон:">
+                    <a class="h-full my-auto ml-2 cursor-pointer" id="telNav" onclick="copyText(this.id)">{{ info.secondNumber }}</a>
+                </div>
+                <div class="flex">
                     <img class="w-8 h-8" src="/siteimg/mail-blue.svg" alt="Почта:">
                     <a class="h-full my-auto ml-2 cursor-pointer" id="mailNav" onclick="copyText(this.id)">{{ info.email }}</a>
                 </div>
@@ -36,6 +40,15 @@
                     <img class="w-8 h-8" src="/siteimg/Location.svg" alt="Адрес:">
                     <p class="h-full my-auto ml-2">Южнопортовая улица 7с7</p>
                 </div>
+                <div class="flex">
+                    <img class="w-8 h-8" src="/siteimg/telegramm_logo.svg" alt="Адрес:">
+                    <a href="{{info.telegramm}}" target="_blank" rel="noopener noreferrer" class="h-full my-auto ml-2">Телеграмм</a>
+                </div>
+                <div class="flex">
+                    <img class="w-8 h-8" src="/siteimg/whatsup_logo.svg" alt="Адрес:">
+                    <a href="{{info.whattsup}}" target="_blank" rel="noopener noreferrer" class="h-full my-auto ml-2">Ватсап</a>
+                </div>
+
             </div>
         </div>
         <div class="card w-full bg-base-100 shadow-xl mt-3">

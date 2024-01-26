@@ -112,7 +112,10 @@ export async function initDB() {
 		if(info.length == 0){
 			await db.create("info", {
 				phoneNumber: "+7 (999) 999-99-99",
-				email: "info@marmaks"
+				secondNumber: "+7 (999) 999-99-99",
+				email: "info@marmaks",
+				whattsup: "https://wa.me/79035456755?text=",
+				telegramm: "https://t.me/business_marmakc"
 			});
 		}
 		const users = await db.select("user");

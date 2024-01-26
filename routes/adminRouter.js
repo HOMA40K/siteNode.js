@@ -160,7 +160,10 @@ router.post("/admin/modifyBox", async (req, res) => {
 router.post("/admin/modifyInfo", async (req, res) => {
 	await db.merge("info", {
 		phoneNumber: req.body.phoneNumber,
-		email: req.body.email
+		secondNumber: req.body.secondNumber,
+		email: req.body.email,
+		telegramm: req.body.telegramm,
+		whattsup: req.body.whattsup
 	});
 	return res.redirect("/admin");
 });

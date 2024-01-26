@@ -74,6 +74,9 @@ body {
     bottom: 30px;
 }
 
+input::file-selector-button{
+    color: #000;
+}
 
   
 /* Dynamically Appending this 
