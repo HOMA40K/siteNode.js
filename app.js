@@ -109,13 +109,12 @@ else{
 	}
 }
 
-// if(process.env.NODE_ENV === "development"){
+if(process.env.NODE_ENV === "development"){
 	
 	httpServer.listen(process.env.HTTP_PORT, () => {
 		console.log("INFO", `Http server is running on http://localhost:${process.env.HTTP_PORT}`);
 	});
-// }
-
+}
 if(httpsServer){
 	httpsServer.listen(process.env.HTTPS_PORT, () => {
 		console.log("INFO", `Https server is running on port: ${process.env.HTTPS_PORT}`);
