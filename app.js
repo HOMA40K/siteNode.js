@@ -94,20 +94,20 @@ app.use("/", orderRouter);
 
 var httpServer;
 var httpsServer;
-// if(process.env.NODE_ENV === "development"){
+if(process.env.NODE_ENV === "development"){
 	httpServer = http.createServer(app);
-// }
-// else{
-// 	if(fs.existsSync("src/cert/privkey.pem")){
-// 		var privateKey  = fs.readFileSync("src/cert/privkey.pem", "utf8");
-// 		var certificate = fs.readFileSync("src/cert/cert.pem", "utf8");
-// 		var credentials = {key: privateKey, cert: certificate};
-// 		httpsServer = https.createServer(credentials, app);
-// 	}
-// 	else{
-// 		console.log("ERROR", "Certificate not found");
-// 	}
-// }
+}
+else{
+	if(fs.existsSync("src/cert/privkey.pem")){
+		var privateKey  = fs.readFileSync("src/cert/privkey.pem", "utf8");
+		var certificate = fs.readFileSync("src/cert/cert.pem", "utf8");
+		var credentials = {key: privateKey, cert: certificate};
+		httpsServer = https.createServer(credentials, app);
+	}
+	else{
+		console.log("ERROR", "Certificate not found");
+	}
+}
 
 // if(process.env.NODE_ENV === "development"){
 	
@@ -116,8 +116,8 @@ var httpsServer;
 	});
 // }
 
-// if(httpsServer){
-// 	httpsServer.listen(process.env.HTTPS_PORT, () => {
-// 		console.log("INFO", `Https server is running on port: ${process.env.HTTPS_PORT}`);
-// 	});
-// }
+if(httpsServer){
+	httpsServer.listen(process.env.HTTPS_PORT, () => {
+		console.log("INFO", `Https server is running on port: ${process.env.HTTPS_PORT}`);
+	});
+}
