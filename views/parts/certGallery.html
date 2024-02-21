@@ -101,11 +101,9 @@
         let images = img.children;
         let index = img.getAttribute("data-index");
 
-        console.log(index);
 
         if (parseInt(index) > 0) {
             document.getElementById(imgId).src = img.children[parseInt(index) - 1].firstElementChild.src;
-            console.log(img.children[parseInt(index) - 1].firstElementChild.src);
             img.setAttribute("data-index", parseInt(index) - 1);
         }
         if (parseInt(index) == 0) {

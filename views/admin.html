@@ -296,10 +296,8 @@
     var radioStatus = false;
     function getState(radio) {
         radioStatus = radio.checked;
-        console.log(radioStatus, "radioStatus");
     }
     async function closeRadio(radio) {
-        console.log(radioStatus, "radioStatus2");
         if (radioStatus) {
             radio.checked = false;
         }
