@@ -4,7 +4,10 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
+import { Logger } from "./../utils/logger.js";
 import db from "../db/surreal.js";
+
+const logger = new Logger();
 
 const router = express.Router();
 
@@ -63,7 +66,7 @@ router.post("/admin/addBox", async (req, res) => {
 		myImagePaths.push("/img/" + req.files.icon[i].name);
 		req.files.icon[i].mv(filePath, (err) => {
 			if (err) {
-				console.log(err);
+				logger.log(err);
 			}
 		});
 	}
@@ -110,7 +113,7 @@ router.post("/admin/modifyBox", async (req, res) => {
 					if (fs.existsSync(filePath.trim())) {
 						fs.unlinkSync(filePath.trim(), (err) => {
 							if (err) {
-								console.log(err);
+								logger.log(err);
 							}
 						});
 					}
@@ -137,7 +140,7 @@ router.post("/admin/modifyBox", async (req, res) => {
 					myImagePaths.push("/img/" + req.files.icon[i].name);
 					req.files.icon[i].mv(filePath, (err) => {
 						if (err) {
-							console.log(err);
+							logger.log(err);
 						}
 					});
 				}
@@ -183,7 +186,7 @@ router.post("/admin/addcert", async (req, res) => {
 		myCertPaths.push("/cert/" + req.files.cert[i].name);
 		req.files.cert[i].mv(filePath, (err) => {
 			if (err) {
-				console.log(err);
+				logger.log(err);
 			}
 		});
 	}
@@ -201,7 +204,7 @@ router.post("/admin/deleteImage", async (req, res) => {
 		if (fs.existsSync(filePath.trim())) {
 			fs.unlinkSync(filePath.trim(), (err) => {
 				if (err) {
-					console.log(err);
+					logger.log(err);
 				}
 			});
 		}
@@ -210,7 +213,7 @@ router.post("/admin/deleteImage", async (req, res) => {
 	if (fs.existsSync(filePath)) {
 		fs.unlinkSync(filePath, (err) => {
 			if (err) {
-				console.log(err);
+				logger.log(err);
 			}
 		});
 	}

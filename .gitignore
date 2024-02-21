@@ -4,5 +4,7 @@ database/storage
 public/css/style.css
 public/files
 src/cert/*
+public/img
+public/cert
 logs/*
 .vscode

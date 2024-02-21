@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { Logger } from "./../utils/logger.js";
 import db from "../database/surreal.js";
 
+
 const router = express.Router();
 const logger = new Logger();
 

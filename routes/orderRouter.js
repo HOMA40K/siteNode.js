@@ -2,6 +2,9 @@ import nodemailer from "nodemailer"
 import express from "express";
 import dotenv from "dotenv";
 
+import { Logger } from "../utils/logger.js";
+
+const logger = new Logger();
 
 const router = express.Router();
 
@@ -34,9 +37,9 @@ try {
 			}
 		});
 	}
-	console.log("INFO", "Transport ready");
+	logger.log("INFO", "Transport ready");
 } catch (error) {
-	console.log("ERROR", error);
+	logger.log("ERROR", error);
 }
 
 async function sendEmailFirmOrder(name, email, note, file){
@@ -55,10 +58,10 @@ async function sendEmailFirmOrder(name, email, note, file){
 
 		});
 	}	catch (error) {
-		console.log("ERROR", error);
+		logger.log("ERROR", error);
 	}
 	if(process.env.NODE_ENV === "development"){
-		console.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
+		logger.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
 	}
 }
 
@@ -71,10 +74,10 @@ async function sendEmailClientOrder(email) {
 			text: "Ваш заказ принят! \nС вами свяжутся в течении нескольких рабочих дней.",
 		});
 	}	catch (error) {
-		console.log("ERROR", error);
+		logger.log("ERROR", error);
 	}
 	if(process.env.NODE_ENV === "development"){
-		console.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
+		logger.log("DEBUG", "Preview URL: " + nodemailer.getTestMessageUrl(info));
 	}
 }
 

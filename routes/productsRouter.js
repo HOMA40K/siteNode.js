@@ -2,6 +2,10 @@ import express from "express";
 
 import db from "../db/surreal.js"
 
+import { Logger } from "./../utils/logger.js";
+
+
+const logger = new Logger();
 const router = express.Router();
 
 // router.get("products", async (req, res) => {
