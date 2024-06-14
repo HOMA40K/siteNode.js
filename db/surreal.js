@@ -32,7 +32,6 @@ async function queryFirst(queryString) {
 async function queryAll(queryString) {
 	try {
 		const query = await db.query(queryString);
-		console.log(query[0]);
 		return query[0];
 	} catch {
 		return {};

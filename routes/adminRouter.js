@@ -1,6 +1,6 @@
 import express from "express";
-import bcrypt from "bcrypt";
 import fs from "fs";
+import bcrypt from "bcrypt";
 import path from "path";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
@@ -41,7 +41,7 @@ router.get("/change_picture_format", async (req, res) => {
 			imagePaths: newImagePathsArray
 		});
 	});
-	return res.redirect("/admin");
+	return res.redirect("admin");
 });
 
 
@@ -53,6 +53,28 @@ router.get("/admin", async (req, res) => {
 		return res.render("admin", { boxes, info, cert });
 	}
 	return res.render("adminauth");
+});
+router.get("/admin/savedata", async (req, res) => {
+	var certs = await db.queryFirst(`SELECT * FROM cert`)
+	var info = await db.queryFirst(`SELECT * FROM info`)
+	console.log(certs)
+	console.log(info)
+	
+	try {
+		const combinedArray = [certs, info];
+		fs.writeFileSync("data.json", JSON.stringify(combinedArray, null, 2));
+
+	} catch (err) {
+		console.error(err)
+	}
+	// fs.writeFile("data.json", certs, "utf8", (err, data) => {
+	// 	if (err){
+	// 		logger.log(err)
+	// 	}
+		
+
+	// })
+	return res.redirect("/admin");
 });
 
 //Write a code that adds item to db and upload images to public/img folder

@@ -1,9 +1,12 @@
 import db from "../db/surreal.js";
+import fs from "fs";
 
 export default async(req, res, next) => {
+	var data;
 	if(req.method == "GET"){
-		const info = await db.queryFirst(`SELECT * FROM info`);
-		const cert = await db.queryFirst(`SELECT * FROM cert`);
+		var parsedData = JSON.parse(fs.readFileSync("data.json", "utf8"));
+		var info = parsedData[1];
+		var cert = parsedData[0];
 		req.app.settings.nunjucksEnv.addGlobal("error", req.session.error);
 		req.app.settings.nunjucksEnv.addGlobal("message", req.session.message);
 		req.app.settings.nunjucksEnv.addGlobal("success", req.session.success);

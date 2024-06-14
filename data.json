@@ -1,0 +1,19 @@
+[
+  {
+    "certPaths": [
+      "/cert/cert1.png",
+      "/cert/cert2.png",
+      "/cert/cert3.png",
+      "/cert/cert4.png"
+    ],
+    "id": "cert:21zyhe98416zf2jzrh2c"
+  },
+  {
+    "email": "info@sadjhyashjd",
+    "id": "info:g8h46n1y221cihjm5yce",
+    "phoneNumber": "+7 (999) 999-99-99",
+    "secondNumber": "+7 (999) 999-99-99",
+    "telegramm": "https://t.me/business_marmakc",
+    "whattsup": "https://wa.me/79035456755?text="
+  }
+]
