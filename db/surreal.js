@@ -22,7 +22,8 @@ db.queryAll = queryAll;
 async function queryFirst(queryString) {
 	try {
 		const query = await db.query(queryString);
-		return query[0].result[0];
+		var a = query[0][0];
+		return a;
 	} catch {
 		return {};
 	}
@@ -31,29 +32,48 @@ async function queryFirst(queryString) {
 async function queryAll(queryString) {
 	try {
 		const query = await db.query(queryString);
-		return query[0].result;
+		console.log(query[0]);
+		return query[0];
 	} catch {
 		return {};
 	}
 }
 
 export async function initDB() {
-	await db.use({ns: 'marmaks', db: 'marmaks'});
+	
 	try {
 		logger.log("INFO", "Initializing database...");
 		if (!db_user || !db_pass || !db_url) {
 			throw new Error("DB_URL or DB_USERNAME or DB_PASSWORD not set");
 		}
-		await db.signin({
-			user: db_user,
-			pass: db_pass,
+		await db.connect(db_url)
+		.then((res) => {
+			logger.log("INFO", "Connected to database", res);
 		})
-			.then((res) => {
-				logger.log("INFO", "Signed in to database", res);
-			})
-			.catch((err) => {
-				logger.log("ERROR", "Error signing in to database", err);
-			});
+		.catch((err) => {
+			logger.log("ERROR", "Error connecting to database", err);
+		});
+		await db.signin({
+			username: db_user,
+			password: db_pass,
+		})
+		.then((res) => {
+			logger.log("INFO", "Signed in to database", res);
+		})
+		.catch((err) => {
+			logger.log("ERROR", "Error signing in to database", err);
+		});
+		await db.use({namespace: 'marmaks', database: 'marmaks'});
+		// await db.signin({
+		// 	username: db_user,
+		// 	password: db_pass,
+		// })
+		// 	.then((res) => {
+		// 		logger.log("INFO", "Signed in to database", res);
+		// 	})
+		// 	.catch((err) => {
+		// 		logger.log("ERROR", "Error signing in to database", err);
+		// 	});
         
         
 		//Generate random id that contains 5 random numbers
@@ -68,7 +88,7 @@ export async function initDB() {
 				return id;
 			}
 
-		}
+		}		
 		//Check if any of items has the same id as generated id
 		function checkId(checkId) {
 			const items = db.select("item");

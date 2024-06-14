@@ -62,28 +62,28 @@
             <div>
                 <h1 class="text-3xl">Сертификаты</h1>
                 <div class="w-full" style="overflow-x: auto; display: flex; flex-direction: row;">
-                    {% if cert.imagePaths | length > 0 %}
-                        {%for i in range(0, cert.imagePaths | length) %}
+                    {% if cert[0].imagePaths | length > 0 %}
+                        {%for i in range(0, cert[0].imagePaths | length) %}
                             <img id="img{{ loop.index }}" class="w-96 h-96 cursor-pointer"
-                                onclick="prepareChangeProductImg('{{ cert.imagePaths }} ','{{ cert.id }}')"
-                                src="{{ cert.imagePaths[i] }}" alt="">
+                                onclick="prepareChangeProductImg('{{ cert[0].imagePaths }} ','{{ cert[0].id }}')"
+                                src="{{ cert[0].imagePaths[i] }}" alt="">
                         {%endfor%}
                     {% endif %}
                 </div>
                 <!-- <div class="w-full">
                     <div class="w-96 h-96">
-                        {% if cert.imagePaths | length > 0 %}
-                            {%for cetrif in cert.imagePaths%}
+                        {% if cert[0].imagePaths | length > 0 %}
+                            {%for cetrif in cert[0].imagePaths%}
                                 <img id="img{{ loop.index }}" class="h-full cursor-pointer "
-                                    onclick="prepareChangeProductImg('{{ cert.imagePaths }} ','{{ cert.id }}')"
-                                    src="{{ cert.imagePaths[0] }}" alt="">
+                                    onclick="prepareChangeProductImg('{{ cert[0].imagePaths }} ','{{ cert[0].id }}')"
+                                    src="{{ cert[0].imagePaths[0] }}" alt="">
 
                             {%endfor%}
                         {% endif %}
                     </div>
                 </div> -->
                 <form action="/admin/addcert" method="post" encType="multipart/form-data" class="mb-5">
-                    <input type="text" class="hidden" name="imagePath" value="{{ cert.imagePaths }}" id="">
+                    <input type="text" class="hidden" name="imagePath" value="{{ cert[0].imagePaths }}" id="">
                     <input type="file" name="cert" accept="image/png, image/webp" multiple required />
                     <button class="mt-4 btn btn-primary" type="submit">Добавить сертификат</button>
 
@@ -91,6 +91,7 @@
             </div>
         </div>
     </div>
+    <!-- {{ boxes }} -->
     {%for box in boxes%}
     <div class="m-2 collapse collapse-arrow  border-2 border-black">
         <input type="radio" name="my-accordion-3" onmouseover="getState(this)" onclick="closeRadio(this)" />
@@ -119,7 +120,8 @@
                             <textarea onfocusout="forOneSelectForm('{{loop.index}}')" name="shortDescription"
                                 class=" textarea textarea-bordered w-full" placeholder="">{{ box.shortDescription }}
                         </textarea>
-                        </label>
+            
+                    </label>
                     </td>
                     <td>
 
